@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1232.3861"
+   height="383.85794"
+   id="svg5513"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="esi.svg">
+  <defs
+     id="defs5515">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective5521" />
+    <inkscape:perspective
+       id="perspective5604"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6508"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6508-2"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="388.10716"
+     inkscape:cy="348.33964"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-global="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1256"
+     inkscape:window-height="751"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="1,0"
+       position="589.89629,365.03231"
+       id="guide6541" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="116.42857,191.78571"
+       id="guide6759" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5518">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-101.53228,-410.67941)">
+    <image
+       y="39.005127"
+       x="133.85716"
+       id="image5606"
+       height="341"
+       width="1178"
+       xlink:href="file:///home/david/repos/public/doc/logos/esi.png" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot6490"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion6492"><rect
+           id="rect6494"
+           width="195.96959"
+           height="226.27417"
+           x="1006.1119"
+           y="93.727417" /></flowRegion><flowPara
+         id="flowPara6496" /></flowRoot>    <path
+       style="fill:#999999;stroke:none;stroke-opacity:1"
+       d="m 346.90625,48.6875 c -11.75558,-0.142311 -23.16192,0.92187 -34.78125,3.15625 -18.18578,3.49711 -32.82797,9.32394 -46.15625,18.375 -3.32026,2.25475 -6.40107,4.09475 -6.84375,4.09375 -0.44268,-0.0013 -3.5125,-1.84169 -6.8125,-4.09375 -12.5427,-8.55968 -26.44281,-14.44769 -42.71875,-18.09375 -8.96432,-2.00815 -20.44337,-2.3125 -31.78125,-2.3125 -13.47433,0 -30.81885,1.04286 -47.5,6.25 -10.26751,3.20508 -26.48822,10.83285 -34.28125,16.125 -31.13536,21.14362 -52.24994,54.71943 -61.375,97.625 -2.08963,9.82533 -2.34375,13.61631 -2.34375,35.5 0,21.86237 0.26054,25.68424 2.34375,35.5 4.40554,20.75831 11.70956,38.73737 21.9375,53.96875 6.61074,9.84466 23.03473,26.00211 33.34375,32.78125 19.75246,12.98907 46.70687,22.01887 73.875,24.75 4.125,0.41467 18.975,0.6901 33,0.625 l 25.5,-0.125 0.28125,-31.09375 0.25,-31.0625 -17.75,-0.6875 c -10.7546,-0.40214 -21.5133,-1.41508 -27.28125,-2.5625 -26.01096,-5.17433 -45.87014,-18.49107 -54.625,-36.65625 -4.26973,-8.85903 -6.06166,-17.517 -6.34375,-21.375 l 70.875,0 c 37.06423,0 66.70465,-0.49 67.875,-0.5 -4.11515,-12.64331 -9.91463,-24.70088 -13.65625,-37.46875 3.21429,3.06282 4.41272,4.22399 6.09375,5.6875 3.35832,2.92377 13.40063,12.14031 21.28125,17 9.7638,6.02097 23.06542,12.0589 39,17.75 27.08737,9.67437 36.20511,15.0634 40.53125,24 3.20617,6.62306 2.57135,16.70107 -1.375,21.875 -7.04688,9.23894 -15.63635,11.7369 -43.15625,12.53125 l -20,0.5625 0.0312,29 c -0.10888,11.24293 -0.30244,22.513 0,33.75 l 27.78125,-0.46875 c 29.25421,-0.51072 39.22488,-1.8159 57.125,-7.4375 21.8099,-6.84948 42.10529,-20.34666 51.59375,-34.21875 l 5.875,-8.59375 0.0937,22.96875 0,19.5 43.21875,-29.03125 46.5625,29.03125 0,-99.25 c 0,-80.31315 0.012,-96.93341 -0.28125,-99.25 -0.44637,-3.526 -3.21903,-9.41906 -12.4375,-22.34375 -9.21846,-12.92468 -15.03883,-19.68541 -39.0625,-35.84375 -16.55193,-11.13284 -30.59222,-18.65585 -38,-21.3125 l 0,72.46875 c 0,39.84254 -0.35377,72.65398 -0.8125,72.9375 -0.45874,0.28351 -3.04624,-2.26544 -5.75,-5.65625 C 408.46611,192.28424 388.30367,179.44092 362.46875,170.21875 321.97161,155.76267 312.625,149.21949 312.625,135.375 c 0,-25.8523 37.66388,-31.32695 85.0625,-12.375 l 11.53125,4.25 4,-13.28125 c 1.81952,-6.03422 3.44225,-13.60125 4.125,-16.65625 L 424.28125,66.25 C 416.20056,62.08885 400.52392,55.96331 383.8125,52.71875 370.76612,50.185765 358.66183,48.829811 346.90625,48.6875 z m -177,59.96875 c 29.29081,0 53.03125,26.65622 53.03125,59.53125 l -106.0625,0 c 0,-32.87503 23.74044,-59.53125 53.03125,-59.53125 z"
+       transform="translate(101.53228,410.67941)"
+       id="path5704"
+       sodipodi:nodetypes="csssssssssssssscccccssccccssssscccccscccccccsssccsssscccccsccccc" />
+    <path
+       style="fill:#cc073d;fill-opacity:1;stroke:none;stroke-opacity:1"
+       d="m 586.78519,486.74105 c -13.05596,-5.48869 -25.94161,-9.99401 -36.84498,-12.06156 -10.90337,-2.06755 -19.7343,-3.05043 -22.4426,-3.3649 l 0,-9.55515 0.28758,-9.25431 6.81033,-1.70105 c 11.38533,-2.84376 37.05001,-4.18329 54.81,-2.8607 14.58496,1.08613 26.16904,2.88648 28.72103,4.4637 l -0.0914,52.56643 c -9.97444,-7.38609 -18.194,-12.74377 -31.24996,-18.23246 z"
+       id="path5614"
+       sodipodi:nodetypes="czccccsccz" />
+    <text
+       xml:space="preserve"
+       style="font-size:87.82516479000000231px;font-style:normal;font-weight:normal;fill:#999999;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;stroke-opacity:1"
+       x="719.87567"
+       y="491.88361"
+       id="text6482"
+       transform="scale(0.94615363,1.0569108)"><tspan
+         sodipodi:role="line"
+         id="tspan6484"
+         x="719.87567"
+         y="491.88361">Escuela</tspan><tspan
+         sodipodi:role="line"
+         x="719.87567"
+         y="601.66504"
+         id="tspan6488" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:89.91481018000000347px;font-style:normal;font-weight:normal;fill:#999999;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;stroke-opacity:1"
+       x="702.35187"
+       y="617.11957"
+       id="text6482-3"
+       transform="scale(0.9686657,1.0323479)"><tspan
+         sodipodi:role="line"
+         id="tspan6484-5"
+         x="702.35187"
+         y="617.11957"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#999999;fill-opacity:1;font-family:OpenSymbol;-inkscape-font-specification:OpenSymbol;stroke:none;stroke-opacity:1">Superior</tspan><tspan
+         sodipodi:role="line"
+         x="702.35187"
+         y="729.51306"
+         id="tspan6488-6" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:88.97794342000000256px;font-style:normal;font-weight:normal;fill:#999999;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;stroke-opacity:1"
+       x="713.42017"
+       y="723.98108"
+       id="text6482-4"
+       transform="scale(0.95857261,1.0432178)"><tspan
+         sodipodi:role="line"
+         id="tspan6484-3"
+         x="713.42017"
+         y="723.98108">de Informática</tspan><tspan
+         sodipodi:role="line"
+         x="713.42017"
+         y="835.20349"
+         id="tspan6488-8" /></text>
+  </g>
+</svg>
