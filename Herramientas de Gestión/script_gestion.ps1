@@ -204,10 +204,10 @@ $gr_ParametrosHostPool.TabStop            = $false
 $gr_ParametrosHostPool.Text               = "Parámetros del HostPool"
 
 $txt_Ring                                 = New-Object System.Windows.Forms.TextBox
-$txt_Ring.Enabled                         = $false
 $txt_Ring.Location                        = New-Object System.Drawing.Point(155, 411)
 $txt_Ring.Name                            = "txt_Ring"
 $txt_Ring.Size                            = New-Object System.Drawing.Size(410, 22)
+$txt_Ring.ReadOnly                        = $true
 
 $lbl_Ring                                 = New-Object System.Windows.Forms.Label
 $lbl_Ring.AutoSize                        = $true
@@ -217,10 +217,10 @@ $lbl_Ring.Size                            = New-Object System.Drawing.Size(37, 1
 $lbl_Ring.Text                            = "Ring"
 
 $txt_ValidationEnv                        = New-Object System.Windows.Forms.TextBox
-$txt_ValidationEnv.Enabled                = $false
 $txt_ValidationEnv.Location               = New-Object System.Drawing.Point(155, 373)
 $txt_ValidationEnv.Name                   = "txt_ValidationEnv"
 $txt_ValidationEnv.Size                   = New-Object System.Drawing.Size(410, 22)
+$txt_ValidationEnv.ReadOnly               = $true
 
 $lbl_ValidationEnv                        = New-Object System.Windows.Forms.Label
 $lbl_ValidationEnv.AutoSize               = $true
@@ -230,10 +230,10 @@ $lbl_ValidationEnv.Size                   = New-Object System.Drawing.Size(94, 1
 $lbl_ValidationEnv.Text                   = "ValidationEnv"
 
 $txt_LoadBalancerType                     = New-Object System.Windows.Forms.TextBox
-$txt_LoadBalancerType.Enabled             = $false
 $txt_LoadBalancerType.Location            = New-Object System.Drawing.Point(155, 335)
 $txt_LoadBalancerType.Name                = "txt_LoadBalancerType"
 $txt_LoadBalancerType.Size                = New-Object System.Drawing.Size(410, 22)
+$txt_LoadBalancerType.ReadOnly            = $true
 
 $lbl_LoadBalancerType                     = New-Object System.Windows.Forms.Label
 $lbl_LoadBalancerType.AutoSize            = $true
@@ -243,10 +243,10 @@ $lbl_LoadBalancerType.Size                = New-Object System.Drawing.Size(128, 
 $lbl_LoadBalancerType.Text                = "LoadBalancerType"
 
 $txt_MaxSessionLimit                      = New-Object System.Windows.Forms.TextBox
-$txt_MaxSessionLimit.Enabled              = $false
 $txt_MaxSessionLimit.Location             = New-Object System.Drawing.Point(155, 297)
 $txt_MaxSessionLimit.Name                 = "txt_MaxSessionLimit"
 $txt_MaxSessionLimit.Size                 = New-Object System.Drawing.Size(410, 22)
+$txt_MaxSessionLimit.ReadOnly             = $true
 
 $lbl_MaxSessionLimit                      = New-Object System.Windows.Forms.Label
 $lbl_MaxSessionLimit.AutoSize             = $true
@@ -256,10 +256,10 @@ $lbl_MaxSessionLimit.Size                 = New-Object System.Drawing.Size(112, 
 $lbl_MaxSessionLimit.Text                 = "MaxSessionLimit"
 
 $txt_CustomRdpProperty                    = New-Object System.Windows.Forms.TextBox
-$txt_CustomRdpProperty.Enabled            = $false
 $txt_CustomRdpProperty.Location           = New-Object System.Drawing.Point(155, 260)
 $txt_CustomRdpProperty.Name               = "txt_CustomRdpProperty"
 $txt_CustomRdpProperty.Size               = New-Object System.Drawing.Size(410, 22)
+$txt_CustomRdpProperty.ReadOnly           = $true
 
 $lbl_CustomRdpProperty                    = New-Object System.Windows.Forms.Label
 $lbl_CustomRdpProperty.AutoSize           = $true
@@ -269,10 +269,10 @@ $lbl_CustomRdpProperty.Size               = New-Object System.Drawing.Size(135, 
 $lbl_CustomRdpProperty.Text               = "CustomRdpProperty"
 
 $txt_Persistent                           = New-Object System.Windows.Forms.TextBox
-$txt_Persistent.Enabled                   = $false
 $txt_Persistent.Location                  = New-Object System.Drawing.Point(155, 221)
 $txt_Persistent.Name                      = "txt_Persistent"
 $txt_Persistent.Size                      = New-Object System.Drawing.Size(410, 22)
+$txt_Persistent.ReadOnly                  = $true
 
 $lbl_Persistent                           = New-Object System.Windows.Forms.Label
 $lbl_Persistent.AutoSize                  = $true
@@ -282,10 +282,10 @@ $lbl_Persistent.Size                      = New-Object System.Drawing.Size(71, 1
 $lbl_Persistent.Text                      = "Persistent"
 
 $txt_Description                          = New-Object System.Windows.Forms.TextBox
-$txt_Description.Enabled                  = $false
 $txt_Description.Location                 = New-Object System.Drawing.Point(155, 182)
 $txt_Description.Name                     = "txt_Description"
 $txt_Description.Size                     = New-Object System.Drawing.Size(410, 22)
+$txt_Description.ReadOnly                 = $true
 
 $lbl_Description                          = New-Object System.Windows.Forms.Label
 $lbl_Description.AutoSize                 = $true
@@ -295,10 +295,10 @@ $lbl_Description.Size                     = New-Object System.Drawing.Size(79, 1
 $lbl_Description.Text                     = "Description"
 
 $txt_FriendlyName                         = New-Object System.Windows.Forms.TextBox
-$txt_FriendlyName.Enabled                 = $false
 $txt_FriendlyName.Location                = New-Object System.Drawing.Point(155, 144)
 $txt_FriendlyName.Name                    = "txt_FriendlyName"
 $txt_FriendlyName.Size                    = New-Object System.Drawing.Size(410, 22)
+$txt_FriendlyName.ReadOnly                = $true
 
 $lbl_FriendlyName                         = New-Object System.Windows.Forms.Label
 $lbl_FriendlyName.AutoSize                = $true
@@ -308,10 +308,10 @@ $lbl_FriendlyName.Size                    = New-Object System.Drawing.Size(95, 1
 $lbl_FriendlyName.Text                    = "FriendlyName"
 
 $txt_HostPoolName                         = New-Object System.Windows.Forms.TextBox
-$txt_HostPoolName.Enabled                 = $false
 $txt_HostPoolName.Location                = New-Object System.Drawing.Point(155, 105)
 $txt_HostPoolName.Name                    = "txt_HostPoolName"
 $txt_HostPoolName.Size                    = New-Object System.Drawing.Size(410, 22)
+$txt_HostPoolName.ReadOnly                = $true
 
 $lbl_HostPoolName                         = New-Object System.Windows.Forms.Label
 $lbl_HostPoolName.AutoSize                = $true
@@ -321,16 +321,16 @@ $lbl_HostPoolName.Size                    = New-Object System.Drawing.Size(102, 
 $lbl_HostPoolName.Text                    = "HostPoolName"
 
 $txt_TenantGroupName                      = New-Object System.Windows.Forms.TextBox
-$txt_TenantGroupName.Enabled              = $false
 $txt_TenantGroupName.Location             = New-Object System.Drawing.Point(155, 68)
 $txt_TenantGroupName.Name                 = "txt_TenantGroupName"
 $txt_TenantGroupName.Size                 = New-Object System.Drawing.Size(410, 22)
+$txt_TenantGroupName.ReadOnly             = $true
 
 $txt_TenantName                           = New-Object System.Windows.Forms.TextBox
-$txt_TenantName.Enabled                   = $false
 $txt_TenantName.Location                  = New-Object System.Drawing.Point(155, 31)
 $txt_TenantName.Name                      = "txt_TenantName"
 $txt_TenantName.Size                      = New-Object System.Drawing.Size(410, 22)
+$txt_TenantName.ReadOnly                  = $true
 
 $lbl_TenantGroupName                      = New-Object System.Windows.Forms.Label
 $lbl_TenantGroupName.AutoSize             = $true
@@ -494,7 +494,7 @@ function enviarCredenciales {
         generarPopUp "Ok" "Warning" "Aviso" "El campo 'Password' no puede estar vacío"
     } else {
         $btn_Enviar.Enabled = $false
-        $btn_DesconcectarAzure.Enabled = $false
+        $btn_DesconectarAzure.Enabled = $false
 
         $creds = New-Object System.Management.Automation.PSCredential($txt_AppId.Text, (ConvertTo-SecureString $txt_Password.Text -AsPlainText -Force))
         Add-RdsAccount -DeploymentUrl $global:deploymentURL -Credential $creds -ServicePrincipal -AadTenantId $global:aadContext.TenantId.Guid
@@ -506,7 +506,7 @@ function enviarCredenciales {
         } else {
             generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al enlazar con el servicio. Compruebe las credenciales e inténtelo de nuevo."
             $btn_Enviar.Enabled = $true
-            $btn_DesconcectarAzure.Enabled = $true
+            $btn_DesconectarAzure.Enabled = $true
         }
 
     }
