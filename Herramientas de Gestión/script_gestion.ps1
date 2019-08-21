@@ -65,6 +65,7 @@ $txt_Password.height                        = 20
 $txt_Password.enabled                       = $false
 $txt_Password.location                      = New-Object System.Drawing.Point(112,62)
 $txt_Password.Font                          = 'Microsoft Sans Serif,10'
+$txt_Password.PasswordChar                  = '*'
 
 $lbl_Password                               = New-Object system.Windows.Forms.Label
 $lbl_Password.text                          = "Password"
@@ -453,16 +454,16 @@ $btn_VolverGestionGrupos.UseVisualStyleBackColor        = $true
 
 $mnu_Strip.Items.AddRange(@($mnu_Archivo))
 $mnu_Archivo.DropDownItems.AddRange(@($mnuItem_CerrarVentana))
-$gr_AppsDisponibles.Controls.Add($lst_GruposApps)
+$gr_AppsDisponibles.Controls.AddRange(@($lst_GruposApps))
 $frm_GestionGrupos.controls.AddRange(@($btn_VolverGestionGrupos,$btn_EditarGrupoApps,$btn_InfoGrupoApps,$btn_EliminarGrupoApps,$btn_CrearGrupoApps,$gr_AppsDisponibles,$cb_SeleccionHostPoolGestion,$lbl_SeleccionHostPoolGestion,$mnu_Strip))
 
 $mnuItem_CerrarVentana.Add_Click( { preguntaSalir $frm_GestionGrupos } )
 $btn_CrearGrupoApps.Add_Click( {  } )
 $btn_EliminarGrupoApps.Add_Click( {  } )
-$btn_InfoGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedIndex } )
-$btn_EditarGrupoApps.Add_Click( {  } )
+$btn_InfoGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
+$btn_EditarGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $true } )
 $btn_VolverGestionGrupos.Add_Click( { preguntaSalir $frm_GestionGrupos } )
-$lst_GruposApps.Add_MouseDoubleClick( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedIndex } )
+$lst_GruposApps.Add_MouseDoubleClick( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $lst_GruposApps.Add_SelectedIndexChanged( { comprobarSeleccionListaGruposApps } )
 
 $frm_GestionGrupos.Add_Load( { cargarHostPools $frm_GestionGrupos $cb_SeleccionHostPoolGestion 
@@ -470,7 +471,199 @@ $frm_GestionGrupos.Add_Load( { cargarHostPools $frm_GestionGrupos $cb_SeleccionH
 $cb_SeleccionHostPoolGestion.Add_SelectedIndexChanged( { poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem.ToString() } )
 
 ####################################################
-############## frm_GestionGrupos ###################
+########### End frm_GestionGrupos ##################
+####################################################
+
+
+####################################################
+############## frm_InfoGrupoApps ###################
+####################################################
+
+$frm_InfoGrupoApps                                      = New-Object System.Windows.Forms.Form
+$frm_InfoGrupoApps.ClientSize                           = New-Object System.Drawing.Size(971, 727)
+$frm_InfoGrupoApps.FormBorderStyle                      = [System.Windows.Forms.FormBorderStyle]::FixedSingle
+$frm_InfoGrupoApps.MaximizeBox                          = $false
+$frm_InfoGrupoApps.Name                                 = "frm_InfoGrupoApps"
+$frm_InfoGrupoApps.Text                                 = "Administración de WVD - Info Grupo de Apps"
+
+$lbl_InfoGrupoApps                                      = New-Object System.Windows.Forms.Label
+$lbl_InfoGrupoApps.AutoSize                             = $true
+$lbl_InfoGrupoApps.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 16.2,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_InfoGrupoApps.Location                             = New-Object System.Drawing.Point(233, 9)
+$lbl_InfoGrupoApps.Name                                 = "lbl_InfoGrupoApps"
+$lbl_InfoGrupoApps.Size                                 = New-Object System.Drawing.Size(540, 32)
+$lbl_InfoGrupoApps.Text                                 = "Información del Grupo de Aplicaciones"
+
+$gr_ValoresGrupoApps                                    = New-Object System.Windows.Forms.GroupBox
+$gr_ValoresGrupoApps.Location                           = New-Object System.Drawing.Point(38, 188)
+$gr_ValoresGrupoApps.Name                               = "gr_ValoresGrupoApps"
+$gr_ValoresGrupoApps.Size                               = New-Object System.Drawing.Size(409, 313)
+$gr_ValoresGrupoApps.Text                               = "Valores del Grupo de Aplicaciones"
+
+$txt_TenantNameGr                                       = New-Object System.Windows.Forms.TextBox
+$txt_TenantNameGr.Location                              = New-Object System.Drawing.Point(145, 72)
+$txt_TenantNameGr.Name                                  = "txt_TenantNameGr"
+$txt_TenantNameGr.ReadOnly                              = $true
+$txt_TenantNameGr.Size                                  = New-Object System.Drawing.Size(247, 22)
+
+$txt_HostPoolNameGr                                     = New-Object System.Windows.Forms.TextBox
+$txt_HostPoolNameGr.Location                            = New-Object System.Drawing.Point(145, 112)
+$txt_HostPoolNameGr.Name                                = "txt_HostPoolNameGr"
+$txt_HostPoolNameGr.ReadOnly                            = $true
+$txt_HostPoolNameGr.Size                                = New-Object System.Drawing.Size(247, 22)
+
+$txt_AppGroupName                                       = New-Object System.Windows.Forms.TextBox
+$txt_AppGroupName.Location                              = New-Object System.Drawing.Point(145, 152)
+$txt_AppGroupName.Name                                  = "txt_AppGroupName"
+$txt_AppGroupName.ReadOnly                              = $true
+$txt_AppGroupName.Size                                  = New-Object System.Drawing.Size(247, 22)
+
+$txt_DescriptionGr                                      = New-Object System.Windows.Forms.TextBox
+$txt_DescriptionGr.Location                             = New-Object System.Drawing.Point(145, 192)
+$txt_DescriptionGr.Name                                 = "txt_DescriptionGr"
+$txt_DescriptionGr.ReadOnly                             = $true
+$txt_DescriptionGr.Size                                 = New-Object System.Drawing.Size(247, 22)
+
+$txt_ResourceType                                       = New-Object System.Windows.Forms.TextBox
+$txt_ResourceType.Location                              = New-Object System.Drawing.Point(145, 272)
+$txt_ResourceType.Name                                  = "txt_ResourceType"
+$txt_ResourceType.ReadOnly                              = $true
+$txt_ResourceType.Size                                  = New-Object System.Drawing.Size(247, 22)
+
+$txt_FriendlyNameGr                                     = New-Object System.Windows.Forms.TextBox
+$txt_FriendlyNameGr.Location                            = New-Object System.Drawing.Point(145, 232)
+$txt_FriendlyNameGr.Name                                = "txt_FriendlyNameGr"
+$txt_FriendlyNameGr.ReadOnly                            = $true
+$txt_FriendlyNameGr.Size                                = New-Object System.Drawing.Size(247, 22)
+
+$txt_TenantGrName                                       = New-Object System.Windows.Forms.TextBox
+$txt_TenantGrName.Location                              = New-Object System.Drawing.Point(145, 32)
+$txt_TenantGrName.Name                                  = "txt_TenantGrName"
+$txt_TenantGrName.ReadOnly                              = $true
+$txt_TenantGrName.Size                                  = New-Object System.Drawing.Size(247, 22)
+
+$lbl_ResourceType                                       = New-Object System.Windows.Forms.Label
+$lbl_ResourceType.AutoSize                              = $true
+$lbl_ResourceType.Location                              = New-Object System.Drawing.Point(38, 275)
+$lbl_ResourceType.Name                                  = "lbl_ResourceType"
+$lbl_ResourceType.Size                                  = New-Object System.Drawing.Size(101, 17)
+$lbl_ResourceType.Text = "ResourceType"
+
+$lbl_FriendlyNameGr                                     = New-Object System.Windows.Forms.Label
+$lbl_FriendlyNameGr.AutoSize                            = $true
+$lbl_FriendlyNameGr.Location                            = New-Object System.Drawing.Point(44, 235)
+$lbl_FriendlyNameGr.Name                                = "lbl_FriendlyNameGr"
+$lbl_FriendlyNameGr.Size                                = New-Object System.Drawing.Size(95, 17)
+$lbl_FriendlyNameGr.Text                                = "FriendlyName"
+
+$lbl_DescriptionGr                                      = New-Object System.Windows.Forms.Label
+$lbl_DescriptionGr.AutoSize                             = $true
+$lbl_DescriptionGr.Location                             = New-Object System.Drawing.Point(60, 195)
+$lbl_DescriptionGr.Name                                 = "lbl_DescriptionGr"
+$lbl_DescriptionGr.Size                                 = New-Object System.Drawing.Size(79, 17)
+$lbl_DescriptionGr.Text                                 = "Description"
+
+$lbl_AppGroupName                                       = New-Object System.Windows.Forms.Label
+$lbl_AppGroupName.AutoSize                              = $true
+$lbl_AppGroupName.Location                              = New-Object System.Drawing.Point(29, 155)
+$lbl_AppGroupName.Name                                  = "lbl_AppGroupName"
+$lbl_AppGroupName.Size                                  = New-Object System.Drawing.Size(110, 17)
+$lbl_AppGroupName.Text                                  = "AppGroupName"
+
+$lbl_HostPoolNameGr                                     = New-Object System.Windows.Forms.Label
+$lbl_HostPoolNameGr.AutoSize                            = $true
+$lbl_HostPoolNameGr.Location                            = New-Object System.Drawing.Point(37, 115)
+$lbl_HostPoolNameGr.Name                                = "lbl_HostPoolNameGr"
+$lbl_HostPoolNameGr.Size                                = New-Object System.Drawing.Size(102, 17)
+$lbl_HostPoolNameGr.Text                                = "HostPoolName"
+
+$lbl_TenantNameGr                                       = New-Object System.Windows.Forms.Label
+$lbl_TenantNameGr.AutoSize                              = $true
+$lbl_TenantNameGr.Location                              = New-Object System.Drawing.Point(49, 75)
+$lbl_TenantNameGr.Name                                  = "lbl_TenantNameGr"
+$lbl_TenantNameGr.Size                                  = New-Object System.Drawing.Size(90, 17)
+$lbl_TenantNameGr.Text                                  = "TenantName"
+
+$lbl_TenantGrName                                       = New-Object System.Windows.Forms.Label
+$lbl_TenantGrName.AutoSize                              = $true
+$lbl_TenantGrName.Location                              = New-Object System.Drawing.Point(9, 35)
+$lbl_TenantGrName.Name                                  = "lbl_TenantGrName"
+$lbl_TenantGrName.Size                                  = New-Object System.Drawing.Size(130, 17)
+$lbl_TenantGrName.Text                                  = "TenantGroupName"
+
+$gr_AppsGrupo                                           = New-Object System.Windows.Forms.GroupBox
+$gr_AppsGrupo.Location                                  = New-Object System.Drawing.Point(495, 71)
+$gr_AppsGrupo.Name                                      = "gr_AppsGrupo"
+$gr_AppsGrupo.Size                                      = New-Object System.Drawing.Size(444, 256)
+$gr_AppsGrupo.Text                                      = "Aplicaciones del Grupo"
+
+$chcklst_AppsGrupo                                      = New-Object System.Windows.Forms.CheckedListBox
+$chcklst_AppsGrupo.Enabled                              = $false
+$chcklst_AppsGrupo.FormattingEnabled                    = $true
+$chcklst_AppsGrupo.Location                             = New-Object System.Drawing.Point(7, 22)
+$chcklst_AppsGrupo.Name                                 = "chcklst_AppsGrupo"
+$chcklst_AppsGrupo.Size                                 = New-Object System.Drawing.Size(431, 225)
+
+$gr_UsuariosGrupo                                       = New-Object System.Windows.Forms.GroupBox
+$gr_UsuariosGrupo.Location                              = New-Object System.Drawing.Point(495, 354)
+$gr_UsuariosGrupo.Name                                  = "gr_UsuariosGrupo"
+$gr_UsuariosGrupo.Size                                  = New-Object System.Drawing.Size(444, 256)
+$gr_UsuariosGrupo.TabStop                               = $false
+$gr_UsuariosGrupo.Text                                  = "Usuarios del Grupo"
+
+$lst_UsuariosGrupo                                      = New-Object System.Windows.Forms.ListBox
+$lst_UsuariosGrupo.FormattingEnabled                    = $true
+$lst_UsuariosGrupo.ItemHeight                           = 16
+$lst_UsuariosGrupo.Location                             = New-Object System.Drawing.Point(6, 21)
+$lst_UsuariosGrupo.Name                                 = "lst_UsuariosGrupo"
+$lst_UsuariosGrupo.Size                                 = New-Object System.Drawing.Size(432, 228)
+
+$btn_VolverGr                                           = New-Object System.Windows.Forms.Button
+$btn_VolverGr.Location                                  = New-Object System.Drawing.Point(342, 631)
+$btn_VolverGr.Name                                      = "btn_VolverGr"
+$btn_VolverGr.Size                                      = New-Object System.Drawing.Size(287, 76)
+$btn_VolverGr.Text                                      = "Volver"
+$btn_VolverGr.UseVisualStyleBackColor                   = $true
+
+$btn_EditarApps                                         = New-Object System.Windows.Forms.Button
+$btn_EditarApps.Location                                = New-Object System.Drawing.Point(955, 136)
+$btn_EditarApps.Name                                    = "btn_EditarApps"
+$btn_EditarApps.Size                                    = New-Object System.Drawing.Size(139, 121)
+$btn_EditarApps.Text                                    = "Guardar cambios de aplicaciones"
+$btn_EditarApps.UseVisualStyleBackColor                 = $true
+
+$btn_AniadirUsuarios                                    = New-Object System.Windows.Forms.Button
+$btn_AniadirUsuarios.Location                           = New-Object System.Drawing.Point(955, 371)
+$btn_AniadirUsuarios.Name                               = "btn_AniadirUsuarios"
+$btn_AniadirUsuarios.Size                               = New-Object System.Drawing.Size(139, 69)
+$btn_AniadirUsuarios.Text                               = "Añadir Usuarios"
+$btn_AniadirUsuarios.UseVisualStyleBackColor            = $true
+
+$btn_SubirCSV                                           = New-Object System.Windows.Forms.Button
+$btn_SubirCSV.Location                                  = New-Object System.Drawing.Point(955, 452)
+$btn_SubirCSV.Name                                      = "btn_SubirCSV"
+$btn_SubirCSV.Size                                      = New-Object System.Drawing.Size(139, 69)
+$btn_SubirCSV.Text                                      = "Subir CSV"
+$btn_SubirCSV.UseVisualStyleBackColor                   = $true
+
+$btn_EliminarUsuario                                    = New-Object System.Windows.Forms.Button
+$btn_EliminarUsuario.Location                           = New-Object System.Drawing.Point(955, 533)
+$btn_EliminarUsuario.Name                               = "btn_EliminarUsuario"
+$btn_EliminarUsuario.Size                               = New-Object System.Drawing.Size(139, 69)
+$btn_EliminarUsuario.Text                               = "Eliminar Usuario"
+$btn_EliminarUsuario.UseVisualStyleBackColor            = $true
+
+$gr_UsuariosGrupo.Controls.AddRange(@($lst_UsuariosGrupo))
+$gr_AppsGrupo.Controls.AddRange(@($chcklst_AppsGrupo))
+$gr_ValoresGrupoApps.Controls.AddRange(@($txt_TenantNameGr,$txt_HostPoolNameGr,$txt_AppGroupName,$txt_DescriptionGr,$txt_ResourceType,$txt_FriendlyNameGr,$txt_TenantGrName,$lbl_ResourceType,$lbl_FriendlyNameGr,$lbl_DescriptionGr,$lbl_AppGroupName,$lbl_HostPoolNameGr,$lbl_TenantNameGr,$lbl_TenantGrName))
+$frm_InfoGrupoApps.Controls.AddRange(@($btn_VolverGr,$gr_UsuariosGrupo,$gr_AppsGrupo,$gr_ValoresGrupoApps,$lbl_InfoGrupoApps,$btn_EditarApps,$btn_AniadirUsuarios,$btn_SubirCSV,$btn_EliminarUsuario))
+
+$btn_VolverGr.Add_Click( { cerrarVentana $frm_InfoGrupoApps } )
+
+$frm_InfoGrupoApps.Add_Load( { rellenarInfoGrupoApps } )
+
+####################################################
+############ End frm_InfoGrupoApps #################
 ####################################################
 
 
@@ -488,10 +681,11 @@ Import-Module AzureAD
 ####################################################
 ############## Global Variables ####################
 ####################################################
-$global:aadContext    = $null
-$global:tenantName    = "UCLM"
-$global:deploymentURL = "https://rdbroker.wvd.microsoft.com"
-$global:gruposApps    = $null
+$global:aadContext            = $null
+$global:tenantName            = "UCLM"
+$global:deploymentURL         = "https://rdbroker.wvd.microsoft.com"
+$global:grupoSeleccionado     = $null
+$global:hostPoolSeleccionado  = $null
 ####################################################
 ############# End Global Variables #################
 ####################################################
@@ -563,7 +757,7 @@ function cargarHostPools ($formulario,$combobox) {
     $hostPools = Get-RdsHostPool -TenantName $global:tenantName
 
     if ($?) {
-        if ($hostPools -is "System.Object") {
+        if ($hostPools -isnot [system.array]) {
             $combobox.Items.Add($hostPools.HostPoolName)
             $combobox.Refresh()
             $combobox.SelectedIndex = 0
@@ -574,7 +768,7 @@ function cargarHostPools ($formulario,$combobox) {
                 poblarListaGruposApps $combobox.SelectedItem.ToString()
             }
             
-        } elseif ($hostPools -is "System.Array") {
+        } elseif ($hostPools -is [system.array]) {
             
             foreach ($hostPool in $hostPools) {
                 $combobox.Items.Add($hostPool.HostPoolName)
@@ -707,11 +901,18 @@ function poblarParametrosHostPool($hostPoolName) {
 
 function poblarListaGruposApps ($hostPoolName) {
     $lst_GruposApps.Items.Clear()
-    $global:gruposApps = Get-RdsAppGroup -TenantName $global:tenantName -HostPoolName $hostPoolName
+    $global:hostPoolSeleccionado = $hostPoolName
+    $gruposApps = Get-RdsAppGroup -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado
 
     if ($?) {
-        foreach ($grupo in $global:gruposApps) {
-            $lst_GruposApps.Items.Add($grupo.AppGroupName)
+        if ($gruposApps -isnot [system.array]) {
+            $lst_GruposApps.Items.Add($gruposApps.AppGroupName)
+        } elseif ($gruposApps -is [system.array]) {
+            
+            foreach ($grupo in $gruposApps) {
+                $lst_GruposApps.Items.Add($grupo.AppGroupName)
+            }
+
         }
     } else {
         generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener los grupos de aplicaciones."
@@ -720,9 +921,14 @@ function poblarListaGruposApps ($hostPoolName) {
     $lst_GruposApps.Refresh()
 }
 
-function lanzarVentanaInfoGrupo ($grupoApps) {
-    #FOR TESTING PURPOSES ONLY
-    Write-Host ($global:gruposApps[$grupoApps].AppGroupName.ToString())
+function lanzarVentanaInfoGrupo ($grupoApps,$editarGrupo) {
+    if ($lst_GruposApps.SelectedItems.Count -eq 1) {
+        habilitarElementosEditarGrupo $editarGrupo
+
+        $global:grupoSeleccionado = $grupoApps
+
+        $frm_InfoGrupoApps.ShowDialog()
+    }
 }
 
 function comprobarSeleccionListaGruposApps {
@@ -734,21 +940,129 @@ function comprobarSeleccionListaGruposApps {
 }
 
 function habilitarBotonesGestionGrupos ($habilitar) {
-    if ($habilitar -eq $false) {
-        $btn_InfoGrupoApps.Enabled = $false
-        $btn_EditarGrupoApps.Enabled = $false
-        $btn_EliminarGrupoApps.Enabled = $false
+    $btn_InfoGrupoApps.Enabled = $habilitar
+    $btn_EditarGrupoApps.Enabled = $habilitar
+    $btn_EliminarGrupoApps.Enabled = $habilitar
+}
+
+function habilitarElementosEditarGrupo ($habilitar) {
+    $btn_EditarApps.Visible = $habilitar
+    $btn_AniadirUsuarios.Visible = $habilitar
+    $btn_SubirCSV.Visible = $habilitar
+    $btn_EliminarUsuario.Visible = $habilitar
+    $chcklst_AppsGrupo.Enabled = $habilitar
+    $lst_UsuariosGrupo.Enabled = $habilitar
+    
+    if ($habilitar -eq $true) {
+        $frm_InfoGrupoApps.ClientSize = '1120, 727'
     } else {
-        $btn_InfoGrupoApps.Enabled = $true
-        $btn_EditarGrupoApps.Enabled = $true
-        $btn_EliminarGrupoApps.Enabled = $true
+        $frm_InfoGrupoApps.ClientSize = '971, 727'
     }
+    
 }
 
 ####################################################
 ######## End Functions frm_GestionGrupos ###########
 ####################################################
 
+
+
+####################################################
+########## Functions frm_InfoGrupoApps #############
+####################################################
+
+function rellenarInfoGrupoApps {
+    limpiarListasInfoGrupoApps
+    obtenerInfoGrupoApps
+    obtenerAppsGrupoApps
+    obtenerUsuariosGrupoApps
+}
+
+function limpiarListasInfoGrupoApps {
+    $lst_UsuariosGrupo.Items.Clear()
+    $chcklst_AppsGrupo.Items.Clear()
+}
+
+function obtenerInfoGrupoApps {
+    $infoGrupo = Get-RdsAppGroup -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -Name $global:grupoSeleccionado
+
+    if ($?) {
+        poblarInfoGrupoApps $infoGrupo
+    } else {
+        generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener la información del grupo de aplicaciones."
+        $frm_InfoGrupoApps.Close()
+    }
+}
+
+function poblarInfoGrupoApps ($infoGrupo) {
+    $txt_TenantGrName.Text = $infoGrupo.TenantGroupName
+    $txt_TenantNameGr.Text = $infoGrupo.TenantName
+    $txt_HostPoolNameGr.Text = $infoGrupo.HostPoolName
+    $txt_AppGroupName.Text = $infoGrupo.AppGroupName
+    $txt_DescriptionGr.Text = $infoGrupo.Description
+    $txt_FriendlyNameGr.Text = $infoGrupo.FriendlyName
+    $txt_ResourceType.Text = $infoGrupo.ResourceType
+}
+
+function obtenerAppsGrupoApps {
+    if ($txt_ResourceType.Text -eq "Desktop") {
+        $chcklst_AppsGrupo.Items.Add("Los grupos de tipo 'Desktop' no son compatibles con apps")
+        $chcklst_AppsGrupo.Refresh()
+    } else {
+        $apps = Get-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
+
+        if ($?) {
+            poblarListaAppsGrupo $apps
+        } else {
+            generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener las aplicaciones del grupo de aplicaciones."
+            $frm_InfoGrupoApps.Close()
+        }
+    }
+}
+
+function poblarListaAppsGrupo ($apps) {
+    $appsTotales = Get-RdsStartMenuApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
+
+    foreach ($app in $appsTotales) {
+        if ($apps -contains $app) {
+            $chcklst_AppsGrupo.Items.Add($app.RemoteAppName, $true)
+        } else {
+            $chcklst_AppsGrupo.Items.Add($app.RemoteAppName, $false)
+        }
+    }
+
+    $chcklst_AppsGrupo.Refresh()
+}
+
+function obtenerUsuariosGrupoApps {
+    $usuariosGrupo = Get-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
+    
+    if ($?) {
+        poblarListaUsuariosGrupo $usuariosGrupo
+    } else {
+        generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener los usuarios del grupo de aplicaciones."
+        $frm_InfoGrupoApps.Close()
+    }
+}
+
+function poblarListaUsuariosGrupo ($usuarios) {
+    if ($usuarios -isnot [system.array]) {
+        $lst_UsuariosGrupo.Items.Add($usuarios.UserPrincipalName)
+    } elseif ($usuarios -is [system.array]) {
+        
+        foreach ($usuario in $usuarios) {
+            $lst_UsuariosGrupo.Items.Add($usuarios.UserPrincipalName)
+        }
+    }
+
+    $lst_UsuariosGrupo.Refresh()
+}
+
+
+
+####################################################
+######## End Functions frm_InfoGrupoApps ###########
+####################################################
 
 
 [void]$frm_Main.ShowDialog()
