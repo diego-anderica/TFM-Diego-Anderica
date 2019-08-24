@@ -403,7 +403,6 @@ $gr_AppsDisponibles                                     = New-Object System.Wind
 $gr_AppsDisponibles.Location                            = New-Object System.Drawing.Point(12, 99)
 $gr_AppsDisponibles.Name                                = "gr_AppsDisponibles"
 $gr_AppsDisponibles.Size                                = New-Object System.Drawing.Size(543, 280)
-$gr_AppsDisponibles.TabStop                             = $false
 $gr_AppsDisponibles.Text                                = "Grupos de Apps Disponibles"
 
 $lst_GruposApps                                         = New-Object System.Windows.Forms.ListBox
@@ -652,6 +651,7 @@ $btn_EliminarUsuario.Name                               = "btn_EliminarUsuario"
 $btn_EliminarUsuario.Size                               = New-Object System.Drawing.Size(139, 69)
 $btn_EliminarUsuario.Text                               = "Eliminar Usuario"
 $btn_EliminarUsuario.UseVisualStyleBackColor            = $true
+$btn_EliminarUsuario.Enabled                            = $false
 
 $gr_UsuariosGrupo.Controls.AddRange(@($lst_UsuariosGrupo))
 $gr_AppsGrupo.Controls.AddRange(@($chcklst_AppsGrupo))
@@ -659,11 +659,64 @@ $gr_ValoresGrupoApps.Controls.AddRange(@($txt_TenantNameGr,$txt_HostPoolNameGr,$
 $frm_InfoGrupoApps.Controls.AddRange(@($btn_VolverGr,$gr_UsuariosGrupo,$gr_AppsGrupo,$gr_ValoresGrupoApps,$lbl_InfoGrupoApps,$btn_EditarApps,$btn_AniadirUsuarios,$btn_SubirCSV,$btn_EliminarUsuario))
 
 $btn_VolverGr.Add_Click( { cerrarVentana $frm_InfoGrupoApps } )
+$btn_EditarApps.Add_Click( { guardarCambiosAppsGrupo } )
+$btn_AniadirUsuarios.Add_Click( { lanzarVentana $frm_AddUsuario } )
+$btn_SubirCSV.Add_Click( { addCSV } )
+$btn_EliminarUsuario.Add_Click( { eliminarUsuario } )
+$lst_UsuariosGrupo.Add_SelectedIndexChanged( { comprobarSeleccionUsuarioGrupo } )
 
 $frm_InfoGrupoApps.Add_Load( { rellenarInfoGrupoApps } )
 
 ####################################################
 ############ End frm_InfoGrupoApps #################
+####################################################
+
+
+
+####################################################
+################ frm_AddUsuario ####################
+####################################################
+
+$frm_AddUsuario                                         = New-Object System.Windows.Forms.Form
+$frm_AddUsuario.ClientSize                              = New-Object System.Drawing.Size(720, 152)
+$frm_AddUsuario.FormBorderStyle                         = [System.Windows.Forms.FormBorderStyle]::FixedSingle
+$frm_AddUsuario.MaximizeBox                             = $false
+$frm_AddUsuario.Name                                    = "frm_AddUsuario"
+$frm_AddUsuario.Text                                    = "Añadir Usuario"
+
+$lbl_CorreoUsuario                                      = New-Object System.Windows.Forms.Label
+$lbl_CorreoUsuario.AutoSize                             = $true
+$lbl_CorreoUsuario.Location                             = New-Object System.Drawing.Point(30, 25)
+$lbl_CorreoUsuario.Name                                 = "lbl_CorreoUsuario"
+$lbl_CorreoUsuario.Size                                 = New-Object System.Drawing.Size(129, 17)
+$lbl_CorreoUsuario.Text                                 = "Correo Electrónico:"
+
+$lbl_NotaAddUsuario                                     = New-Object System.Windows.Forms.Label
+$lbl_NotaAddUsuario.Font                                = New-Object System.Drawing.Font("Microsoft Sans Serif", 12,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_NotaAddUsuario.Location                            = New-Object System.Drawing.Point(71, 65)
+$lbl_NotaAddUsuario.Name                                = "lbl_NotaAddUsuario"
+$lbl_NotaAddUsuario.Size                                = New-Object System.Drawing.Size(579, 66)
+$lbl_NotaAddUsuario.Text                                = "NOTA: para añadir varios usuarios, separe los correos electrónicos mediante comas."
+$lbl_NotaAddUsuario.TextAlign                           = [System.Drawing.ContentAlignment]::MiddleCenter
+
+$txt_CorreosUsuarios                                    = New-Object System.Windows.Forms.TextBox
+$txt_CorreosUsuarios.Location                           = New-Object System.Drawing.Point(165, 22)
+$txt_CorreosUsuarios.Name                               = "txt_CorreosUsuarios"
+$txt_CorreosUsuarios.Size                               = New-Object System.Drawing.Size(402, 22)
+
+$btn_AddCorreos                                         = New-Object System.Windows.Forms.Button
+$btn_AddCorreos.Location                                = New-Object System.Drawing.Point(598, 12)
+$btn_AddCorreos.Name                                    = "btn_AddCorreos"
+$btn_AddCorreos.Size                                    = New-Object System.Drawing.Size(96, 38)
+$btn_AddCorreos.Text                                    = "Añadir"
+$btn_AddCorreos.UseVisualStyleBackColor                 = $true
+
+$btn_AddCorreos.Add_Click( { tratarUsuarios } )
+
+$frm_AddUsuario.Controls.AddRange(@($btn_AddCorreos,$txt_CorreosUsuarios,$lbl_NotaAddUsuario,$lbl_CorreoUsuario))
+
+####################################################
+############### End frm_AddUsuario #################
 ####################################################
 
 
@@ -686,6 +739,8 @@ $global:tenantName            = "UCLM"
 $global:deploymentURL         = "https://rdbroker.wvd.microsoft.com"
 $global:grupoSeleccionado     = $null
 $global:hostPoolSeleccionado  = $null
+$global:appsActivas           = $null
+$global:appsActivasAppName    = $null
 ####################################################
 ############# End Global Variables #################
 ####################################################
@@ -826,9 +881,9 @@ function habilitarCredenciales($habilitar) {
 
 function enviarCredenciales {
     if ($txt_AppId.Text -eq "") {
-        generarPopUp "Ok" "Warning" "Aviso" "El campo 'App ID' no puede estar vacío"
+        generarPopUp "Ok" "Warning" "Aviso" "El campo 'App ID' no puede estar vacío."
     } elseif ($txt_Password.Text -eq "") {
-        generarPopUp "Ok" "Warning" "Aviso" "El campo 'Password' no puede estar vacío"
+        generarPopUp "Ok" "Warning" "Aviso" "El campo 'Password' no puede estar vacío."
     } else {
         $btn_Enviar.Enabled = $false
         $btn_DesconectarAzure.Enabled = $false
@@ -1021,17 +1076,29 @@ function obtenerAppsGrupoApps {
 }
 
 function poblarListaAppsGrupo ($apps) {
+    $global:appsActivasFriendlyName = @()
+    $global:appsActivasAppName = @()
+    
+    foreach ($app in $apps) {
+        $chcklst_AppsGrupo.Items.Add($app.FriendlyName, $true)
+        $global:appsActivasFriendlyName += ,$app.FriendlyName
+        $global:appsActivasAppName += ,$app.RemoteAppName
+    }
+        
     $appsTotales = Get-RdsStartMenuApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
 
-    foreach ($app in $appsTotales) {
-        if ($apps -contains $app) {
-            $chcklst_AppsGrupo.Items.Add($app.RemoteAppName, $true)
-        } else {
-            $chcklst_AppsGrupo.Items.Add($app.RemoteAppName, $false)
+    if ($?) {
+        foreach ($app in $appsTotales) {
+            if ($app.FriendlyName -notin $global:appsActivasFriendlyName) {
+                $chcklst_AppsGrupo.Items.Add($app.AppAlias, $false)
+            }
         }
-    }
 
-    $chcklst_AppsGrupo.Refresh()
+        $chcklst_AppsGrupo.Refresh()
+    } else {
+        generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener las aplicaciones del grupo de aplicaciones."
+        $frm_InfoGrupoApps.Close()
+    }
 }
 
 function obtenerUsuariosGrupoApps {
@@ -1046,7 +1113,7 @@ function obtenerUsuariosGrupoApps {
 }
 
 function poblarListaUsuariosGrupo ($usuarios) {
-    if ($usuarios -isnot [system.array]) {
+    if ($usuarios -isnot [system.array] -and $usuarios -ne $null) {
         $lst_UsuariosGrupo.Items.Add($usuarios.UserPrincipalName)
     } elseif ($usuarios -is [system.array]) {
         
@@ -1058,11 +1125,120 @@ function poblarListaUsuariosGrupo ($usuarios) {
     $lst_UsuariosGrupo.Refresh()
 }
 
+function guardarCambiosAppsGrupo {
+    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Guardar cambios realizados en las aplicaciones?") -eq "Yes") {
+        $appsSeleccionadas = $chcklst_AppsGrupo.CheckedItems
 
+        foreach ($app in $global:appsActivasAppName) {
+            Remove-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -Name $app
+        }
+
+        foreach ($app in $appsSeleccionadas) {
+            New-RdsRemoteApp -TenantName $global:tenantName -HostPoolname $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -Name $app.ToString().ToUpper() -AppAlias $app
+        }
+    }
+
+    rellenarInfoGrupoApps
+}
+
+function addUsuarios ($direcciones) {
+    foreach ($direccion in $direcciones) {
+        if ([bool]($direccion -as [Net.Mail.MailAddress])) {
+            Add-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $txt_CorreosUsuarios.Text
+
+            if (-not $?) {
+                generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al añadir al usuario " + "$direccion" + "."
+            }
+
+        } else {
+            generarPopUp "Ok" "Error" "Aviso" "La dirección " + $direccion + " no es una dirección válida y no será tenida en cuenta."
+        }
+                
+    }
+
+    $txt_CorreosUsuarios.Text = ""
+
+    cerrarVentana $frm_AddUsuario
+    rellenarInfoGrupoApps
+}
+
+function eliminarUsuario {
+    if ($lst_UsuariosGrupo.SelectedItem -ne "") {
+        if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "Se eliminará el usuario seleccionado. ¿Continuar?") -eq "Yes") {
+            Remove-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $lst_UsuariosGrupo.SelectedItem
+            
+            if ($?) {
+                 generarPopUp "Ok" "Info" "Información" "Se ha eliminado correctamente al usuario."
+            } else {
+                generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al eliminar al usuario."
+            }
+        }
+    }
+
+    rellenarInfoGrupoApps
+
+    if ($lst_UsuariosGrupo.Items.Count -le 0) {
+        $btn_EliminarUsuario.Enabled = $false
+    }
+}
+
+function comprobarSeleccionUsuarioGrupo {
+    if ($lst_UsuariosGrupo.SelectedIndex -lt 0) {
+        $btn_EliminarUsuario.Enabled = $false
+    } else {
+        $btn_EliminarUsuario.Enabled = $true
+    }
+}
 
 ####################################################
 ######## End Functions frm_InfoGrupoApps ###########
 ####################################################
+
+
+
+####################################################
+############ Functions frm_AddUsuario ##############
+####################################################
+
+function tratarUsuarios {
+    if ($txt_CorreosUsuarios.Text -eq "") {
+        generarPopUp "Ok" "Warning" "Aviso" "El campo de texto está vacío."        
+    } else {
+        if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Añadir usuarios?") -eq "Yes") {
+            $entrada = $txt_CorreosUsuarios.Text.Replace(" ", "")
+
+            if ($entrada.Contains(",")) {
+                $direcciones = $entrada.Text.Split(",")
+                addUsuarios $direcciones
+            } else {
+                addUsuarios $entrada
+            }
+        }
+    }
+}
+
+function addCSV {
+    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "Al seleccionar un archivo CSV se sobreescribirán los usuarios existentes. ¿Continuar?") -eq "Yes") {
+        $direcciones = @()
+
+        $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
+        $FileBrowser.filter = "Archivos CSV (*.csv)| *.csv"
+        [void]$FileBrowser.ShowDialog()
+        $usuarios = import-csv $FileBrowser.FileName -Delimiter ";"
+
+        foreach ($usuario in $usuarios) {
+            $direcciones += ,$usuario.Correo
+        }
+
+        addUsuarios $direcciones
+        
+    }
+}
+
+####################################################
+########## End Functions frm_AddUsuario ############
+####################################################
+
 
 
 [void]$frm_Main.ShowDialog()
