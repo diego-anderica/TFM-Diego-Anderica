@@ -1,6 +1,16 @@
+###################################################
+###### Solución para la administración de WVD #####
+######      TFM - Diego Andérica Richard      #####
+######              ESI - UCLM                #####
+###################################################
+
+
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName PresentationCore,PresentationFramework
 [System.Windows.Forms.Application]::EnableVisualStyles()
+
+
 
 ####################################################
 ################### frm_Main #######################
@@ -8,96 +18,86 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework
 
 $frm_Main                                   = New-Object system.Windows.Forms.Form
 $frm_Main.ClientSize                        = New-Object System.Drawing.Size(495, 172)
-$frm_Main.text                              = "Administración de Usuarios - Conexión a Azure"
+$frm_Main.Text                              = "Administración de Usuarios - Conexión a Azure"
 $frm_Main.TopMost                           = $false
 $frm_Main.MaximizeBox                       = $false
 $frm_Main.Name                              = "frm_Main"
 $frm_Main.FormBorderStyle                   = [System.Windows.Forms.FormBorderStyle]::FixedSingle
-$frm_Main.icon                              = "./resources/users.ico"
+$frm_Main.Icon                              = "./resources/users.ico"
 
 $btn_ConectarAzure                          = New-Object system.Windows.Forms.Button
-$btn_ConectarAzure.text                     = "Conectar a Azure"
-$btn_ConectarAzure.width                    = 148
-$btn_ConectarAzure.height                   = 63
-$btn_ConectarAzure.location                 = New-Object System.Drawing.Point(16,26)
-$btn_ConectarAzure.Font                     = 'Microsoft Sans Serif,10,style=Bold'
+$btn_ConectarAzure.Text                     = "Conectar a Azure"
+$btn_ConectarAzure.Size                     = New-Object System.Drawing.Size(148, 63)
+$btn_ConectarAzure.Location                 = New-Object System.Drawing.Point(16,26)
+$btn_ConectarAzure.Font                     = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $lbl_Titulo                                 = New-Object system.Windows.Forms.Label
-$lbl_Titulo.text                            = "Herramienta de Gestión de Usuarios"
+$lbl_Titulo.Text                            = "Herramienta de Gestión de Usuarios"
 $lbl_Titulo.AutoSize                        = $true
-$lbl_Titulo.width                           = 624
-$lbl_Titulo.height                          = 286
-$lbl_Titulo.location                        = New-Object System.Drawing.Point(46,16)
-$lbl_Titulo.Font                            = 'Microsoft Sans Serif,14,style=Bold'
+$lbl_Titulo.Size                            = New-Object System.Drawing.Size(624, 286)
+$lbl_Titulo.Location                        = New-Object System.Drawing.Point(46,16)
+$lbl_Titulo.Font                            = New-Object System.Drawing.Font("Microsoft Sans Serif", 14,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $gr_AzureConex                              = New-Object system.Windows.Forms.Groupbox
-$gr_AzureConex.height                       = 102
-$gr_AzureConex.width                        = 376
-$gr_AzureConex.text                         = "Conexión a Azure"
-$gr_AzureConex.location                     = New-Object System.Drawing.Point(53,56)
+$gr_AzureConex.Size                         = New-Object System.Drawing.Size(376, 102)
+$gr_AzureConex.Text                         = "Conexión a Azure"
+$gr_AzureConex.Location                     = New-Object System.Drawing.Point(53,56)
 
 $gr_Credenciales                            = New-Object system.Windows.Forms.Groupbox
-$gr_Credenciales.height                     = 105
-$gr_Credenciales.width                      = 316
-$gr_Credenciales.text                       = "Credenciales"
-$gr_Credenciales.location                   = New-Object System.Drawing.Point(78,189)
+$gr_Credenciales.Size                       = New-Object System.Drawing.Size(316, 105)
+$gr_Credenciales.Text                       = "Credenciales"
+$gr_Credenciales.Location                   = New-Object System.Drawing.Point(78,189)
 
 $txt_AppId                                  = New-Object system.Windows.Forms.TextBox
-$txt_AppId.multiline                        = $false
-$txt_AppId.width                            = 183
-$txt_AppId.height                           = 20
-$txt_AppId.enabled                          = $false
-$txt_AppId.location                         = New-Object System.Drawing.Point(112,24)
-$txt_AppId.Font                             = 'Microsoft Sans Serif,10'
+$txt_AppId.Multiline                        = $false
+$txt_AppId.Size                             = New-Object System.Drawing.Size(183, 20)
+$txt_AppId.Enabled                          = $false
+$txt_AppId.Location                         = New-Object System.Drawing.Point(112,24)
+$txt_AppId.Font                             = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $lbl_AppID                                  = New-Object system.Windows.Forms.Label
-$lbl_AppID.text                             = "App ID"
+$lbl_AppID.Text                             = "App ID"
 $lbl_AppID.AutoSize                         = $true
-$lbl_AppID.width                            = 25
-$lbl_AppID.height                           = 10
-$lbl_AppID.location                         = New-Object System.Drawing.Point(14,28)
-$lbl_AppID.Font                             = 'Microsoft Sans Serif,10'
+$lbl_AppID.Size                             = New-Object System.Drawing.Size(25, 10)
+$lbl_AppID.Location                         = New-Object System.Drawing.Point(14,28)
+$lbl_AppID.Font                             = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $txt_Password                               = New-Object system.Windows.Forms.TextBox
-$txt_Password.multiline                     = $false
-$txt_Password.width                         = 183
-$txt_Password.height                        = 20
-$txt_Password.enabled                       = $false
-$txt_Password.location                      = New-Object System.Drawing.Point(112,62)
-$txt_Password.Font                          = 'Microsoft Sans Serif,10'
+$txt_Password.Multiline                     = $false
+$txt_Password.Size                          = New-Object System.Drawing.Size(183, 20)
+$txt_Password.Enabled                       = $false
+$txt_Password.Location                      = New-Object System.Drawing.Point(112,62)
+$txt_Password.Font                          = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
 $txt_Password.PasswordChar                  = '*'
 
 $lbl_Password                               = New-Object system.Windows.Forms.Label
-$lbl_Password.text                          = "Password"
+$lbl_Password.Text                          = "Password"
 $lbl_Password.AutoSize                      = $true
-$lbl_Password.width                         = 25
-$lbl_Password.height                        = 10
-$lbl_Password.location                      = New-Object System.Drawing.Point(14,65)
-$lbl_Password.Font                          = 'Microsoft Sans Serif,10'
+$lbl_Password.Size                          = New-Object System.Drawing.Size(25, 10)
+$lbl_Password.Location                      = New-Object System.Drawing.Point(14,65)
+$lbl_Password.Font                          = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $btn_Enviar                                 = New-Object system.Windows.Forms.Button
-$btn_Enviar.text                            = "Enviar"
-$btn_Enviar.width                           = 86
-$btn_Enviar.height                          = 37
-$btn_Enviar.enabled                         = $false
-$btn_Enviar.location                        = New-Object System.Drawing.Point(186,308)
-$btn_Enviar.Font                            = 'Microsoft Sans Serif,10,style=Bold'
+$btn_Enviar.Text                            = "Enviar"
+$btn_Enviar.Size                            = New-Object System.Drawing.Size(86, 37)
+$btn_Enviar.Enabled                         = $false
+$btn_Enviar.Location                        = New-Object System.Drawing.Point(186,308)
+$btn_Enviar.Font                            = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $btn_DesconectarAzure                       = New-Object system.Windows.Forms.Button
-$btn_DesconectarAzure.text                  = "Desconectar de Azure"
-$btn_DesconectarAzure.width                 = 148
-$btn_DesconectarAzure.height                = 63
-$btn_DesconectarAzure.enabled               = $false
-$btn_DesconectarAzure.location              = New-Object System.Drawing.Point(200,26)
-$btn_DesconectarAzure.Font                  = 'Microsoft Sans Serif,10,style=Bold'
-
-$gr_AzureConex.controls.AddRange(@($btn_ConectarAzure,$btn_DesconectarAzure))
-$frm_Main.controls.AddRange(@($lbl_Titulo,$gr_AzureConex,$gr_Credenciales,$btn_Enviar))
-$gr_Credenciales.controls.AddRange(@($txt_AppId,$lbl_AppID,$txt_Password,$lbl_Password))
+$btn_DesconectarAzure.Text                  = "Desconectar de Azure"
+$btn_DesconectarAzure.Size                  = New-Object System.Drawing.Size(148, 63)
+$btn_DesconectarAzure.Enabled               = $false
+$btn_DesconectarAzure.Location              = New-Object System.Drawing.Point(200,26)
+$btn_DesconectarAzure.Font                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
 
 $btn_ConectarAzure.Add_Click({ conectarAzure })
 $btn_DesconectarAzure.Add_Click({ desconectarAzure $true })
 $btn_Enviar.Add_Click({ enviarCredenciales })
+
+$gr_AzureConex.Controls.AddRange(@($btn_ConectarAzure,$btn_DesconectarAzure))
+$gr_Credenciales.Controls.AddRange(@($txt_AppId,$lbl_AppID,$txt_Password,$lbl_Password))
+$frm_Main.controls.AddRange(@($lbl_Titulo,$gr_AzureConex,$gr_Credenciales,$btn_Enviar))
 
 ####################################################
 ################ End frm_Main ######################
@@ -110,7 +110,7 @@ $btn_Enviar.Add_Click({ enviarCredenciales })
 ####################################################
 
 $frm_Menu                                               = New-Object system.Windows.Forms.Form
-$frm_Menu.ClientSize                                    = New-Object System.Drawing.Size(502, 536)
+$frm_Menu.ClientSize                                    = New-Object System.Drawing.Size(502, 425)
 $frm_Menu.FormBorderStyle                               = [System.Windows.Forms.FormBorderStyle]::FixedSingle
 $frm_Menu.MaximizeBox                                   = $false
 $frm_Menu.Name                                          = "frm_Menu"
@@ -140,10 +140,10 @@ $btn_GestionGrupos.Text                                 = "Gestionar Grupos de A
 $btn_GestionGrupos.UseVisualStyleBackColor              = $true
 $btn_GestionGrupos.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
 
-$frm_Menu.Controls.AddRange(@($lbl_MenuPcpal,$btn_InfoHostPool,$btn_GestionGrupos))
-
-$btn_InfoHostPool.Add_Click({ lanzarVentana $frm_InfoHostPool })
+$btn_InfoHostPool.Add_Click( { lanzarVentana $frm_InfoHostPool } )
 $btn_GestionGrupos.Add_Click( { lanzarVentana $frm_GestionGrupos } )
+
+$frm_Menu.Controls.AddRange(@($lbl_MenuPcpal,$btn_InfoHostPool,$btn_GestionGrupos))
 
 ####################################################
 ################# End frm_Menu #####################
@@ -188,7 +188,6 @@ $gr_ParametrosHostPool                                  = New-Object System.Wind
 $gr_ParametrosHostPool.Location                         = New-Object System.Drawing.Point(42, 132)
 $gr_ParametrosHostPool.Name                             = "gr_ParametrosHostPool"
 $gr_ParametrosHostPool.Size                             = New-Object System.Drawing.Size(589, 456)
-$gr_ParametrosHostPool.TabStop                          = $false
 $gr_ParametrosHostPool.Text                             = "Parámetros del HostPool"
 
 $txt_Ring                                               = New-Object System.Windows.Forms.TextBox
@@ -341,13 +340,12 @@ $btn_VolverInfoHostPool.Size                            = New-Object System.Draw
 $btn_VolverInfoHostPool.Text                            = "Volver"
 $btn_VolverInfoHostPool.UseVisualStyleBackColor         = $true
 
-$gr_ParametrosHostPool.Controls.AddRange(@($txt_Ring,$lbl_Ring,$txt_ValidationEnv,$lbl_ValidationEnv,$txt_LoadBalancerType,$lbl_LoadBalancerType,$txt_MaxSessionLimit,$lbl_MaxSessionLimit,$txt_CustomRdpProperty,$lbl_CustomRdpProperty,$txt_Persistent,$lbl_Persistent,$txt_Description,$lbl_Description,$txt_FriendlyName,$lbl_FriendlyName,$txt_HostPoolName,$lbl_HostPoolName,$txt_TenantGroupName,$txt_TenantName,$lbl_TenantGroupName,$lbl_TenantName))
-
-$frm_InfoHostPool.Controls.AddRange(@($btn_VolverInfoHostPool,$gr_ParametrosHostPool,$lbl_SeleccionHostPool,$cb_ListaHostPools,$lbl_InfoHostPool))
-
 $frm_InfoHostPool.Add_Load( { cargarHostPools $frm_InfoHostPool $cb_ListaHostPools } )
 $btn_VolverInfoHostPool.Add_Click( { cerrarVentana $frm_InfoHostPool } )
-$cb_ListaHostPools.Add_SelectedIndexChanged( { poblarParametrosHostPool $cb_ListaHostPools.SelectedItem.ToString() } )
+$cb_ListaHostPools.Add_SelectedIndexChanged( { poblarParametrosHostPool $cb_ListaHostPools.SelectedItem } )
+
+$gr_ParametrosHostPool.Controls.AddRange(@($txt_Ring,$lbl_Ring,$txt_ValidationEnv,$lbl_ValidationEnv,$txt_LoadBalancerType,$lbl_LoadBalancerType,$txt_MaxSessionLimit,$lbl_MaxSessionLimit,$txt_CustomRdpProperty,$lbl_CustomRdpProperty,$txt_Persistent,$lbl_Persistent,$txt_Description,$lbl_Description,$txt_FriendlyName,$lbl_FriendlyName,$txt_HostPoolName,$lbl_HostPoolName,$txt_TenantGroupName,$txt_TenantName,$lbl_TenantGroupName,$lbl_TenantName))
+$frm_InfoHostPool.Controls.AddRange(@($btn_VolverInfoHostPool,$gr_ParametrosHostPool,$lbl_SeleccionHostPool,$cb_ListaHostPools,$lbl_InfoHostPool))
 
 ####################################################
 ############ End frm_InfoHostPool ##################
@@ -451,27 +449,27 @@ $btn_VolverGestionGrupos.Size                           = New-Object System.Draw
 $btn_VolverGestionGrupos.Text                           = "Volver"
 $btn_VolverGestionGrupos.UseVisualStyleBackColor        = $true
 
-$mnu_Strip.Items.AddRange(@($mnu_Archivo))
-$mnu_Archivo.DropDownItems.AddRange(@($mnuItem_CerrarVentana))
-$gr_AppsDisponibles.Controls.AddRange(@($lst_GruposApps))
-$frm_GestionGrupos.controls.AddRange(@($btn_VolverGestionGrupos,$btn_EditarGrupoApps,$btn_InfoGrupoApps,$btn_EliminarGrupoApps,$btn_CrearGrupoApps,$gr_AppsDisponibles,$cb_SeleccionHostPoolGestion,$lbl_SeleccionHostPoolGestion,$mnu_Strip))
-
 $mnuItem_CerrarVentana.Add_Click( { preguntaSalir $frm_GestionGrupos } )
-$btn_CrearGrupoApps.Add_Click( {  } )
-$btn_EliminarGrupoApps.Add_Click( {  } )
+$btn_CrearGrupoApps.Add_Click( { lanzarVentana $frm_CrearGrupo } )
+$btn_EliminarGrupoApps.Add_Click( { eliminarGrupo } )
 $btn_InfoGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $btn_EditarGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $true } )
 $btn_VolverGestionGrupos.Add_Click( { preguntaSalir $frm_GestionGrupos } )
 $lst_GruposApps.Add_MouseDoubleClick( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $lst_GruposApps.Add_SelectedIndexChanged( { comprobarSeleccionListaGruposApps } )
-
+$cb_SeleccionHostPoolGestion.Add_SelectedIndexChanged( { poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem } )
 $frm_GestionGrupos.Add_Load( { cargarHostPools $frm_GestionGrupos $cb_SeleccionHostPoolGestion 
                                habilitarBotonesGestionGrupos $false} )
-$cb_SeleccionHostPoolGestion.Add_SelectedIndexChanged( { poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem.ToString() } )
+
+$mnu_Strip.Items.AddRange(@($mnu_Archivo))
+$mnu_Archivo.DropDownItems.AddRange(@($mnuItem_CerrarVentana))
+$gr_AppsDisponibles.Controls.AddRange(@($lst_GruposApps))
+$frm_GestionGrupos.controls.AddRange(@($btn_VolverGestionGrupos,$btn_EditarGrupoApps,$btn_InfoGrupoApps,$btn_EliminarGrupoApps,$btn_CrearGrupoApps,$gr_AppsDisponibles,$cb_SeleccionHostPoolGestion,$lbl_SeleccionHostPoolGestion,$mnu_Strip))
 
 ####################################################
 ########### End frm_GestionGrupos ##################
 ####################################################
+
 
 
 ####################################################
@@ -607,7 +605,6 @@ $gr_UsuariosGrupo                                       = New-Object System.Wind
 $gr_UsuariosGrupo.Location                              = New-Object System.Drawing.Point(495, 354)
 $gr_UsuariosGrupo.Name                                  = "gr_UsuariosGrupo"
 $gr_UsuariosGrupo.Size                                  = New-Object System.Drawing.Size(444, 256)
-$gr_UsuariosGrupo.TabStop                               = $false
 $gr_UsuariosGrupo.Text                                  = "Usuarios del Grupo"
 
 $lst_UsuariosGrupo                                      = New-Object System.Windows.Forms.ListBox
@@ -653,19 +650,18 @@ $btn_EliminarUsuario.Text                               = "Eliminar Usuario"
 $btn_EliminarUsuario.UseVisualStyleBackColor            = $true
 $btn_EliminarUsuario.Enabled                            = $false
 
-$gr_UsuariosGrupo.Controls.AddRange(@($lst_UsuariosGrupo))
-$gr_AppsGrupo.Controls.AddRange(@($chcklst_AppsGrupo))
-$gr_ValoresGrupoApps.Controls.AddRange(@($txt_TenantNameGr,$txt_HostPoolNameGr,$txt_AppGroupName,$txt_DescriptionGr,$txt_ResourceType,$txt_FriendlyNameGr,$txt_TenantGrName,$lbl_ResourceType,$lbl_FriendlyNameGr,$lbl_DescriptionGr,$lbl_AppGroupName,$lbl_HostPoolNameGr,$lbl_TenantNameGr,$lbl_TenantGrName))
-$frm_InfoGrupoApps.Controls.AddRange(@($btn_VolverGr,$gr_UsuariosGrupo,$gr_AppsGrupo,$gr_ValoresGrupoApps,$lbl_InfoGrupoApps,$btn_EditarApps,$btn_AniadirUsuarios,$btn_SubirCSV,$btn_EliminarUsuario))
-
 $btn_VolverGr.Add_Click( { cerrarVentana $frm_InfoGrupoApps } )
 $btn_EditarApps.Add_Click( { guardarCambiosAppsGrupo } )
 $btn_AniadirUsuarios.Add_Click( { lanzarVentana $frm_AddUsuario } )
 $btn_SubirCSV.Add_Click( { addCSV } )
 $btn_EliminarUsuario.Add_Click( { eliminarUsuario } )
 $lst_UsuariosGrupo.Add_SelectedIndexChanged( { comprobarSeleccionUsuarioGrupo } )
-
 $frm_InfoGrupoApps.Add_Load( { rellenarInfoGrupoApps } )
+
+$gr_UsuariosGrupo.Controls.AddRange(@($lst_UsuariosGrupo))
+$gr_AppsGrupo.Controls.AddRange(@($chcklst_AppsGrupo))
+$gr_ValoresGrupoApps.Controls.AddRange(@($txt_TenantNameGr,$txt_HostPoolNameGr,$txt_AppGroupName,$txt_DescriptionGr,$txt_ResourceType,$txt_FriendlyNameGr,$txt_TenantGrName,$lbl_ResourceType,$lbl_FriendlyNameGr,$lbl_DescriptionGr,$lbl_AppGroupName,$lbl_HostPoolNameGr,$lbl_TenantNameGr,$lbl_TenantGrName))
+$frm_InfoGrupoApps.Controls.AddRange(@($btn_VolverGr,$gr_UsuariosGrupo,$gr_AppsGrupo,$gr_ValoresGrupoApps,$lbl_InfoGrupoApps,$btn_EditarApps,$btn_AniadirUsuarios,$btn_SubirCSV,$btn_EliminarUsuario))
 
 ####################################################
 ############ End frm_InfoGrupoApps #################
@@ -722,9 +718,105 @@ $frm_AddUsuario.Controls.AddRange(@($btn_AddCorreos,$txt_CorreosUsuarios,$lbl_No
 
 
 ####################################################
+################# frm_CrearGrupo ###################
+####################################################
+
+$frm_CrearGrupo                                         = New-Object System.Windows.Forms.Form
+$frm_CrearGrupo.ClientSize                              = New-Object System.Drawing.Size(541, 256)
+$frm_CrearGrupo.FormBorderStyle                         = [System.Windows.Forms.FormBorderStyle]::FixedSingle
+$frm_CrearGrupo.MaximizeBox                             = $false
+$frm_CrearGrupo.Name                                    = "frm_CrearGrupo"
+$frm_CrearGrupo.Text                                    = "Administración de WVD - Nuevo Grupo"
+
+$lbl_NombreNGrupo                                       = New-Object System.Windows.Forms.Label
+$lbl_NombreNGrupo.AutoSize                              = $true
+$lbl_NombreNGrupo.Location                              = New-Object System.Drawing.Point(90, 39)
+$lbl_NombreNGrupo.Name                                  = "lbl_NombreNGrupo"
+$lbl_NombreNGrupo.Size                                  = New-Object System.Drawing.Size(62, 17)
+$lbl_NombreNGrupo.Text                                  = "Nombre:"
+
+$txt_NombreNGrupo                                       = New-Object System.Windows.Forms.TextBox
+$txt_NombreNGrupo.Location                              = New-Object System.Drawing.Point(158, 36)
+$txt_NombreNGrupo.Name                                  = "txt_NombreNGrupo"
+$txt_NombreNGrupo.Size                                  = New-Object System.Drawing.Size(355, 22)
+$txt_NombreNGrupo.TabIndex                              = 1
+
+$lbl_DescripciónNGrupo                                  = New-Object System.Windows.Forms.Label
+$lbl_DescripciónNGrupo.AutoSize                         = $true
+$lbl_DescripciónNGrupo.Location                         = New-Object System.Drawing.Point(66, 70)
+$lbl_DescripciónNGrupo.Name                             = "lbl_DescripciónNGrupo"
+$lbl_DescripciónNGrupo.Size                             = New-Object System.Drawing.Size(86, 17)
+$lbl_DescripciónNGrupo.Text                             = "Descripción:"
+
+$txt_DescripciónNGrupo                                  = New-Object System.Windows.Forms.TextBox
+$txt_DescripciónNGrupo.Location                         = New-Object System.Drawing.Point(158, 67)
+$txt_DescripciónNGrupo.Name                             = "txt_DescripciónNGrupo"
+$txt_DescripciónNGrupo.Size                             = New-Object System.Drawing.Size(355, 22)
+$txt_DescripciónNGrupo.TabIndex                         = 2
+
+$lbl_FriendlyNameNGrupo                                 = New-Object System.Windows.Forms.Label
+$lbl_FriendlyNameNGrupo.AutoSize                        = $true
+$lbl_FriendlyNameNGrupo.Location                        = New-Object System.Drawing.Point(53, 101)
+$lbl_FriendlyNameNGrupo.Name                            = "lbl_FriendlyNameNGrupo"
+$lbl_FriendlyNameNGrupo.Size                            = New-Object System.Drawing.Size(99, 17)
+$lbl_FriendlyNameNGrupo.Text                            = "FriendlyName:"
+
+$txt_FriendlyNameNGrupo                                 = New-Object System.Windows.Forms.TextBox
+$txt_FriendlyNameNGrupo.Location                        = New-Object System.Drawing.Point(158, 98)
+$txt_FriendlyNameNGrupo.Name                            = "txt_FriendlyNameNGrupo"
+$txt_FriendlyNameNGrupo.Size                            = New-Object System.Drawing.Size(355, 22)
+$txt_FriendlyNameNGrupo.TabIndex                        = 3
+
+$lbl_TipoRecursosNGrupo                                 = New-Object System.Windows.Forms.Label
+$lbl_TipoRecursosNGrupo.AutoSize                        = $true
+$lbl_TipoRecursosNGrupo.Location                        = New-Object System.Drawing.Point(28, 132)
+$lbl_TipoRecursosNGrupo.Name                            = "lbl_TipoRecursosNGrupo"
+$lbl_TipoRecursosNGrupo.Size                            = New-Object System.Drawing.Size(124, 17)
+$lbl_TipoRecursosNGrupo.Text                            = "Tipo de Recursos:"
+
+$cb_TipoRecursosNGrupo                                  = New-Object System.Windows.Forms.ComboBox
+$cb_TipoRecursosNGrupo.FormattingEnabled                = $true
+$cb_TipoRecursosNGrupo.Location                         = New-Object System.Drawing.Point(158, 129)
+$cb_TipoRecursosNGrupo.Name                             = "cb_TipoRecursosNGrupo"
+$cb_TipoRecursosNGrupo.Size                             = New-Object System.Drawing.Size(355, 24)
+$cb_TipoRecursosNGrupo.DropDownStyle                    = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$cb_TipoRecursosNGrupo.TabIndex                         = 4
+
+$btn_CancelarNGrupo                                     = New-Object System.Windows.Forms.Button
+$btn_CancelarNGrupo.Location                            = New-Object System.Drawing.Point(57, 177)
+$btn_CancelarNGrupo.Name                                = "btn_CancelarNGrupo"
+$btn_CancelarNGrupo.Size                                = New-Object System.Drawing.Size(137, 50)
+$btn_CancelarNGrupo.Text                                = "Cancelar"
+$btn_CancelarNGrupo.UseVisualStyleBackColor             = $true
+$btn_CancelarNGrupo.TabIndex                            = 5
+
+$btn_CrearNGrupo                                        = New-Object System.Windows.Forms.Button
+$btn_CrearNGrupo.Location                               = New-Object System.Drawing.Point(346, 177)
+$btn_CrearNGrupo.Name                                   = "btn_CrearNGrupo"
+$btn_CrearNGrupo.Size                                   = New-Object System.Drawing.Size(137, 50)
+$btn_CrearNGrupo.Text                                   = "Crear Grupo"
+$btn_CrearNGrupo.UseVisualStyleBackColor                = $true
+$btn_CrearNGrupo.TabIndex                               = 6
+
+$btn_CancelarNGrupo.Add_Click( { cancelarCreacionGrupo } )
+$btn_CrearNGrupo.Add_Click( { crearNGrupo } )
+$frm_CrearGrupo.Add_Load( { restablecerCamposNGrupo } )
+
+$cb_TipoRecursosNGrupo.Items.AddRange(@("RemoteApp","Desktop"))
+$frm_CrearGrupo.Controls.AddRange(@($btn_CrearNGrupo,$btn_CancelarNGrupo,$cb_TipoRecursosNGrupo,$lbl_TipoRecursosNGrupo,$txt_FriendlyNameNGrupo,$lbl_FriendlyNameNGrupo,$txt_DescripciónNGrupo,$lbl_DescripciónNGrupo,$txt_NombreNGrupo,$lbl_NombreNGrupo))
+
+####################################################
+############### End frm_CrearGrupo #################
+####################################################
+
+
+
+####################################################
 ################ Global Imports ####################
 ####################################################
+
 Import-Module AzureAD
+
 ####################################################
 ############## End Global Imports ##################
 ####################################################
@@ -734,6 +826,7 @@ Import-Module AzureAD
 ####################################################
 ############## Global Variables ####################
 ####################################################
+
 $global:aadContext            = $null
 $global:tenantName            = "UCLM"
 $global:deploymentURL         = "https://rdbroker.wvd.microsoft.com"
@@ -741,6 +834,7 @@ $global:grupoSeleccionado     = $null
 $global:hostPoolSeleccionado  = $null
 $global:appsActivas           = $null
 $global:appsActivasAppName    = $null
+
 ####################################################
 ############# End Global Variables #################
 ####################################################
@@ -820,7 +914,7 @@ function cargarHostPools ($formulario,$combobox) {
             if ($formulario.Name -eq "frm_InfoHostPool") {
                 poblarParametrosHostPool $hostPools.HostPoolName
             } elseif ($formulario.Name -eq "frm_GestionGrupos") {
-                poblarListaGruposApps $combobox.SelectedItem.ToString()
+                poblarListaGruposApps $combobox.SelectedItem
             }
             
         } elseif ($hostPools -is [system.array]) {
@@ -840,6 +934,7 @@ function cargarHostPools ($formulario,$combobox) {
 ####################################################
 ############# End Global Functions #################
 ####################################################
+
 
 
 ####################################################
@@ -909,6 +1004,7 @@ function enviarCredenciales {
 ####################################################
 
 
+
 ####################################################
 ############# Functions frm_Menu ###################
 ####################################################
@@ -974,6 +1070,7 @@ function poblarListaGruposApps ($hostPoolName) {
     }
 
     $lst_GruposApps.Refresh()
+    comprobarSeleccionListaGruposApps
 }
 
 function lanzarVentanaInfoGrupo ($grupoApps,$editarGrupo) {
@@ -1012,6 +1109,22 @@ function habilitarElementosEditarGrupo ($habilitar) {
         $frm_InfoGrupoApps.ClientSize = '1120, 727'
     } else {
         $frm_InfoGrupoApps.ClientSize = '971, 727'
+    } 
+}
+
+function eliminarGrupo {
+    if ($lst_GruposApps.SelectedIndex -ge 0) {
+        if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Eliminar grupo seleccionado?") -eq "Yes") {
+            Remove-RdsAppGroup -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -Name $lst_GruposApps.SelectedItem
+
+            if ($?) {
+                generarPopUp "Ok" "Info" "Información" "Se ha eliminado correctamente el grupo de aplicaciones."
+
+                poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem
+            } else {
+                generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al eliminar el grupo de aplicaciones."
+            }
+        }
     }
     
 }
@@ -1045,7 +1158,7 @@ function obtenerInfoGrupoApps {
         poblarInfoGrupoApps $infoGrupo
     } else {
         generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener la información del grupo de aplicaciones."
-        $frm_InfoGrupoApps.Close()
+        cerrarVentana $frm_InfoGrupoApps
     }
 }
 
@@ -1070,7 +1183,7 @@ function obtenerAppsGrupoApps {
             poblarListaAppsGrupo $apps
         } else {
             generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener las aplicaciones del grupo de aplicaciones."
-            $frm_InfoGrupoApps.Close()
+            cerrarVentana $frm_InfoGrupoApps
         }
     }
 }
@@ -1097,7 +1210,7 @@ function poblarListaAppsGrupo ($apps) {
         $chcklst_AppsGrupo.Refresh()
     } else {
         generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener las aplicaciones del grupo de aplicaciones."
-        $frm_InfoGrupoApps.Close()
+        cerrarVentana $frm_InfoGrupoApps
     }
 }
 
@@ -1108,7 +1221,7 @@ function obtenerUsuariosGrupoApps {
         poblarListaUsuariosGrupo $usuariosGrupo
     } else {
         generarPopUp "Ok" "Error" "Error" "Ha ocurrido un error al obtener los usuarios del grupo de aplicaciones."
-        $frm_InfoGrupoApps.Close()
+        cerrarVentana $frm_InfoGrupoApps
     }
 }
 
@@ -1237,6 +1350,49 @@ function addCSV {
 
 ####################################################
 ########## End Functions frm_AddUsuario ############
+####################################################
+
+
+
+####################################################
+############ Functions frm_CrearGrupo ##############
+####################################################
+
+function cancelarCreacionGrupo {
+    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Cancelar creación del grupo?") -eq "Yes") {
+        cerrarVentana $frm_CrearGrupo
+    }
+}
+
+function restablecerCamposNGrupo {
+    $txt_NombreNGrupo.Text = ""
+    $txt_DescripciónNGrupo.Text = ""
+    $txt_FriendlyNameNGrupo.Text = ""
+    $cb_TipoRecursosNGrupo.SelectedIndex = 0
+}
+
+function crearNGrupo {
+    if ($txt_NombreNGrupo.Text -ne "") {
+        if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Crear nuevo grupo con los parámetros seleccionados?") -eq "Yes") {
+            New-RdsAppGroup -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -Name $txt_NombreNGrupo.Text -Description $txt_DescripciónNGrupo.Text -FriendlyName $txt_FriendlyNameNGrupo.Text -ResourceType $cb_TipoRecursosNGrupo.SelectedItem
+            
+            if ($?) {
+                generarPopUp "OK" "Info" "Información" "El grupo se ha creado correctamente."
+
+                cerrarVentana $frm_CrearGrupo
+
+                poblarListaGruposApps $global:hostPoolSeleccionado
+            } else {
+                generarPopUp "OK" "Error" "Error" "Ha ocurrido un problema al crear el grupo."
+            }
+        }
+    } else {
+        generarPopUp "OK" "Info" "Aviso" "El campo de nombre no puede estar vacío."
+    }
+}
+
+####################################################
+########## End Functions frm_CrearGrupo ############
 ####################################################
 
 
