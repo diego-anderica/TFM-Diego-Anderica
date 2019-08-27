@@ -16,84 +16,84 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework
 ################### frm_Main #######################
 ####################################################
 
-$frm_Main                                   = New-Object system.Windows.Forms.Form
-$frm_Main.ClientSize                        = New-Object System.Drawing.Size(495, 172)
-$frm_Main.Text                              = "Administración de Usuarios - Conexión a Azure"
-$frm_Main.TopMost                           = $false
-$frm_Main.MaximizeBox                       = $false
-$frm_Main.Name                              = "frm_Main"
-$frm_Main.FormBorderStyle                   = [System.Windows.Forms.FormBorderStyle]::FixedSingle
-$frm_Main.Icon                              = "./resources/users.ico"
+$frm_Main                                               = New-Object system.Windows.Forms.Form
+$frm_Main.ClientSize                                    = New-Object System.Drawing.Size(495, 170)
+$frm_Main.Text                                          = "Administración de WVD - Conexión a Azure"
+$frm_Main.TopMost                                       = $false
+$frm_Main.MaximizeBox                                   = $false
+$frm_Main.Name                                          = "frm_Main"
+$frm_Main.FormBorderStyle                               = [System.Windows.Forms.FormBorderStyle]::FixedSingle
+$frm_Main.Icon                                          = "./resources/users.ico"
 
-$btn_ConectarAzure                          = New-Object system.Windows.Forms.Button
-$btn_ConectarAzure.Text                     = "Conectar a Azure"
-$btn_ConectarAzure.Size                     = New-Object System.Drawing.Size(148, 63)
-$btn_ConectarAzure.Location                 = New-Object System.Drawing.Point(16,26)
-$btn_ConectarAzure.Font                     = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$btn_ConectarAzure                                      = New-Object system.Windows.Forms.Button
+$btn_ConectarAzure.Text                                 = "Conectar a Azure"
+$btn_ConectarAzure.Size                                 = New-Object System.Drawing.Size(148, 63)
+$btn_ConectarAzure.Location                             = New-Object System.Drawing.Point(16, 26)
+$btn_ConectarAzure.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$lbl_Titulo                                 = New-Object system.Windows.Forms.Label
-$lbl_Titulo.Text                            = "Herramienta de Gestión de Usuarios"
-$lbl_Titulo.AutoSize                        = $true
-$lbl_Titulo.Size                            = New-Object System.Drawing.Size(624, 286)
-$lbl_Titulo.Location                        = New-Object System.Drawing.Point(46,16)
-$lbl_Titulo.Font                            = New-Object System.Drawing.Font("Microsoft Sans Serif", 14,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_Titulo                                             = New-Object system.Windows.Forms.Label
+$lbl_Titulo.Text                                        = "Herramienta de Administración de WVD"
+$lbl_Titulo.AutoSize                                    = $true
+$lbl_Titulo.Size                                        = New-Object System.Drawing.Size(624, 286)
+$lbl_Titulo.Location                                    = New-Object System.Drawing.Point(20, 16)
+$lbl_Titulo.Font                                        = New-Object System.Drawing.Font("Microsoft Sans Serif", 14, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$gr_AzureConex                              = New-Object system.Windows.Forms.Groupbox
-$gr_AzureConex.Size                         = New-Object System.Drawing.Size(376, 102)
-$gr_AzureConex.Text                         = "Conexión a Azure"
-$gr_AzureConex.Location                     = New-Object System.Drawing.Point(53,56)
+$gr_AzureConex                                          = New-Object system.Windows.Forms.Groupbox
+$gr_AzureConex.Size                                     = New-Object System.Drawing.Size(365, 100)
+$gr_AzureConex.Text                                     = "Conexión a Azure"
+$gr_AzureConex.Location                                 = New-Object System.Drawing.Point(60, 55)
 
-$gr_Credenciales                            = New-Object system.Windows.Forms.Groupbox
-$gr_Credenciales.Size                       = New-Object System.Drawing.Size(316, 105)
-$gr_Credenciales.Text                       = "Credenciales"
-$gr_Credenciales.Location                   = New-Object System.Drawing.Point(78,189)
+$gr_Credenciales                                        = New-Object system.Windows.Forms.Groupbox
+$gr_Credenciales.Size                                   = New-Object System.Drawing.Size(316, 105)
+$gr_Credenciales.Text                                   = "Credenciales"
+$gr_Credenciales.Location                               = New-Object System.Drawing.Point(78, 189)
 
-$txt_AppId                                  = New-Object system.Windows.Forms.TextBox
-$txt_AppId.Multiline                        = $false
-$txt_AppId.Size                             = New-Object System.Drawing.Size(183, 20)
-$txt_AppId.Enabled                          = $false
-$txt_AppId.Location                         = New-Object System.Drawing.Point(112,24)
-$txt_AppId.Font                             = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
+$txt_AppId                                              = New-Object system.Windows.Forms.TextBox
+$txt_AppId.Multiline                                    = $false
+$txt_AppId.Size                                         = New-Object System.Drawing.Size(183, 20)
+$txt_AppId.Enabled                                      = $false
+$txt_AppId.Location                                     = New-Object System.Drawing.Point(112,24)
+$txt_AppId.Font                                         = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$lbl_AppID                                  = New-Object system.Windows.Forms.Label
-$lbl_AppID.Text                             = "App ID"
-$lbl_AppID.AutoSize                         = $true
-$lbl_AppID.Size                             = New-Object System.Drawing.Size(25, 10)
-$lbl_AppID.Location                         = New-Object System.Drawing.Point(14,28)
-$lbl_AppID.Font                             = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_AppID                                              = New-Object system.Windows.Forms.Label
+$lbl_AppID.Text                                         = "App ID"
+$lbl_AppID.AutoSize                                     = $true
+$lbl_AppID.Size                                         = New-Object System.Drawing.Size(25, 10)
+$lbl_AppID.Location                                     = New-Object System.Drawing.Point(14, 28)
+$lbl_AppID.Font                                         = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$txt_Password                               = New-Object system.Windows.Forms.TextBox
-$txt_Password.Multiline                     = $false
-$txt_Password.Size                          = New-Object System.Drawing.Size(183, 20)
-$txt_Password.Enabled                       = $false
-$txt_Password.Location                      = New-Object System.Drawing.Point(112,62)
-$txt_Password.Font                          = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
-$txt_Password.PasswordChar                  = '*'
+$txt_Password                                           = New-Object system.Windows.Forms.TextBox
+$txt_Password.Multiline                                 = $false
+$txt_Password.Size                                      = New-Object System.Drawing.Size(183, 20)
+$txt_Password.Enabled                                   = $false
+$txt_Password.Location                                  = New-Object System.Drawing.Point(112, 62)
+$txt_Password.Font                                      = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$txt_Password.PasswordChar                              = '*'
 
-$lbl_Password                               = New-Object system.Windows.Forms.Label
-$lbl_Password.Text                          = "Password"
-$lbl_Password.AutoSize                      = $true
-$lbl_Password.Size                          = New-Object System.Drawing.Size(25, 10)
-$lbl_Password.Location                      = New-Object System.Drawing.Point(14,65)
-$lbl_Password.Font                          = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_Password                                           = New-Object system.Windows.Forms.Label
+$lbl_Password.Text                                      = "Password"
+$lbl_Password.AutoSize                                  = $true
+$lbl_Password.Size                                      = New-Object System.Drawing.Size(25, 10)
+$lbl_Password.Location                                  = New-Object System.Drawing.Point(14, 65)
+$lbl_Password.Font                                      = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$btn_Enviar                                 = New-Object system.Windows.Forms.Button
-$btn_Enviar.Text                            = "Enviar"
-$btn_Enviar.Size                            = New-Object System.Drawing.Size(86, 37)
-$btn_Enviar.Enabled                         = $false
-$btn_Enviar.Location                        = New-Object System.Drawing.Point(186,308)
-$btn_Enviar.Font                            = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$btn_Enviar                                             = New-Object system.Windows.Forms.Button
+$btn_Enviar.Text                                        = "Enviar"
+$btn_Enviar.Size                                        = New-Object System.Drawing.Size(86, 37)
+$btn_Enviar.Enabled                                     = $false
+$btn_Enviar.Location                                    = New-Object System.Drawing.Point(200, 308)
+$btn_Enviar.Font                                        = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$btn_DesconectarAzure                       = New-Object system.Windows.Forms.Button
-$btn_DesconectarAzure.Text                  = "Desconectar de Azure"
-$btn_DesconectarAzure.Size                  = New-Object System.Drawing.Size(148, 63)
-$btn_DesconectarAzure.Enabled               = $false
-$btn_DesconectarAzure.Location              = New-Object System.Drawing.Point(200,26)
-$btn_DesconectarAzure.Font                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$btn_DesconectarAzure                                   = New-Object system.Windows.Forms.Button
+$btn_DesconectarAzure.Text                              = "Desconectar de Azure"
+$btn_DesconectarAzure.Size                              = New-Object System.Drawing.Size(148, 63)
+$btn_DesconectarAzure.Enabled                           = $false
+$btn_DesconectarAzure.Location                          = New-Object System.Drawing.Point(200, 26)
+$btn_DesconectarAzure.Font                              = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
-$btn_ConectarAzure.Add_Click({ conectarAzure })
-$btn_DesconectarAzure.Add_Click({ desconectarAzure $true })
-$btn_Enviar.Add_Click({ enviarCredenciales })
+$btn_ConectarAzure.Add_Click( { conectarAzure } )
+$btn_DesconectarAzure.Add_Click( { desconectarAzure $true } )
+$btn_Enviar.Add_Click( { enviarCredenciales } )
 
 $gr_AzureConex.Controls.AddRange(@($btn_ConectarAzure,$btn_DesconectarAzure))
 $gr_Credenciales.Controls.AddRange(@($txt_AppId,$lbl_AppID,$txt_Password,$lbl_Password))
@@ -110,7 +110,7 @@ $frm_Main.controls.AddRange(@($lbl_Titulo,$gr_AzureConex,$gr_Credenciales,$btn_E
 ####################################################
 
 $frm_Menu                                               = New-Object system.Windows.Forms.Form
-$frm_Menu.ClientSize                                    = New-Object System.Drawing.Size(502, 425)
+$frm_Menu.ClientSize                                    = New-Object System.Drawing.Size(430, 390)
 $frm_Menu.FormBorderStyle                               = [System.Windows.Forms.FormBorderStyle]::FixedSingle
 $frm_Menu.MaximizeBox                                   = $false
 $frm_Menu.Name                                          = "frm_Menu"
@@ -118,32 +118,40 @@ $frm_Menu.Text                                          = "Administración de WVD
 
 $lbl_MenuPcpal                                          = New-Object System.Windows.Forms.Label
 $lbl_MenuPcpal.AutoSize                                 = $true
-$lbl_MenuPcpal.Font                                     = New-Object System.Drawing.Font("Microsoft Sans Serif", 18,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
-$lbl_MenuPcpal.Location                                 = New-Object System.Drawing.Point(130, 20)
+$lbl_MenuPcpal.Font                                     = New-Object System.Drawing.Font("Microsoft Sans Serif", 18, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_MenuPcpal.Location                                 = New-Object System.Drawing.Point(97, 20)
 $lbl_MenuPcpal.Name                                     = "lbl_MenuPcpal"
 $lbl_MenuPcpal.Size                                     = New-Object System.Drawing.Size(228, 36)
 $lbl_MenuPcpal.Text                                     = "Menú Principal"
 
+$lbl_PreguntaMenu                                       = New-Object System.Windows.Forms.Label
+$lbl_PreguntaMenu.AutoSize                              = $true
+$lbl_PreguntaMenu.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_PreguntaMenu.Location                              = New-Object System.Drawing.Point(60, 60)
+$lbl_PreguntaMenu.Name                                  = "lbl_PreguntaMenu"
+$lbl_PreguntaMenu.Size                                  = New-Object System.Drawing.Size(230, 36)
+$lbl_PreguntaMenu.Text                                  = "Escoja una de las opciones disponibles..."
+
 $btn_InfoHostPool                                       = New-Object System.Windows.Forms.Button
-$btn_InfoHostPool.Location                              = New-Object System.Drawing.Point(130, 94)
+$btn_InfoHostPool.Location                              = New-Object System.Drawing.Point(95, 110)
 $btn_InfoHostPool.Name                                  = "btn_InfoHostPool"
-$btn_InfoHostPool.Size                                  = New-Object System.Drawing.Size(235, 102)
+$btn_InfoHostPool.Size                                  = New-Object System.Drawing.Size(235, 100)
 $btn_InfoHostPool.Text                                  = "Ver HostPools Disponibles"
 $btn_InfoHostPool.UseVisualStyleBackColor               = $true
-$btn_InfoHostPool.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$btn_InfoHostPool.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
 $btn_GestionGrupos                                      = New-Object System.Windows.Forms.Button
-$btn_GestionGrupos.Location                             = New-Object System.Drawing.Point(136, 217)
+$btn_GestionGrupos.Location                             = New-Object System.Drawing.Point(95, 240)
 $btn_GestionGrupos.Name                                 = "btn_GestionGrupos"
-$btn_GestionGrupos.Size                                 = New-Object System.Drawing.Size(231, 102)
+$btn_GestionGrupos.Size                                 = New-Object System.Drawing.Size(235, 100)
 $btn_GestionGrupos.Text                                 = "Gestionar Grupos de Aplicaciones"
 $btn_GestionGrupos.UseVisualStyleBackColor              = $true
-$btn_GestionGrupos.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$btn_GestionGrupos.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
 
 $btn_InfoHostPool.Add_Click( { lanzarVentana $frm_InfoHostPool } )
 $btn_GestionGrupos.Add_Click( { lanzarVentana $frm_GestionGrupos } )
 
-$frm_Menu.Controls.AddRange(@($lbl_MenuPcpal,$btn_InfoHostPool,$btn_GestionGrupos))
+$frm_Menu.Controls.AddRange(@($lbl_MenuPcpal,$lbl_PreguntaMenu,$btn_InfoHostPool,$btn_GestionGrupos))
 
 ####################################################
 ################# End frm_Menu #####################
@@ -449,12 +457,12 @@ $btn_VolverGestionGrupos.Size                           = New-Object System.Draw
 $btn_VolverGestionGrupos.Text                           = "Volver"
 $btn_VolverGestionGrupos.UseVisualStyleBackColor        = $true
 
-$mnuItem_CerrarVentana.Add_Click( { preguntaSalir $frm_GestionGrupos } )
+$mnuItem_CerrarVentana.Add_Click( { cerrarVentana $frm_GestionGrupos } )
 $btn_CrearGrupoApps.Add_Click( { lanzarVentana $frm_CrearGrupo } )
 $btn_EliminarGrupoApps.Add_Click( { eliminarGrupo } )
 $btn_InfoGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $btn_EditarGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $true } )
-$btn_VolverGestionGrupos.Add_Click( { preguntaSalir $frm_GestionGrupos } )
+$btn_VolverGestionGrupos.Add_Click( { cerrarVentana $frm_GestionGrupos } )
 $lst_GruposApps.Add_MouseDoubleClick( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $lst_GruposApps.Add_SelectedIndexChanged( { comprobarSeleccionListaGruposApps } )
 $cb_SeleccionHostPoolGestion.Add_SelectedIndexChanged( { poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem } )
@@ -877,26 +885,6 @@ function generarPopUp ($opciones, $icono, $titulo, $mensaje) {
     return ([System.Windows.MessageBox]::Show($MessageBody, $MessageTitle, $ButtonType, $MessageIcon))
 }
 
-function desconectarAzure ($ventanaMain) {
-    if ($ventanaMain -eq $true) {
-        if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Desconectar de Azure?") -eq "Yes") {
-            Disconnect-AzureAD
-            $global:aadContext = $null
-            habilitarCredenciales $false
-        }
-    } else {
-        Disconnect-AzureAD
-        $global:aadContext = $null
-    }
-}
-
-function preguntaSalir ($ventana) {
-    if ((generarPopUp "SiNo" "Warning" "Aviso" "Se perderán todos los cambios no guardados. ¿Continuar?") -eq "Yes") {
-        desconectarAzure $false
-        cerrarVentana $ventana
-    }
-}
-
 function lanzarVentana ($ventana) {
     $ventana.ShowDialog()
 }
@@ -956,18 +944,26 @@ function conectarAzure {
         
 }
 
+function desconectarAzure ($ventanaMain) {
+    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Desconectar de Azure?") -eq "Yes") {
+        Disconnect-AzureAD
+        $global:aadContext = $null
+        habilitarCredenciales $false
+    }
+}
+
 function habilitarCredenciales($habilitar) {
     if ($habilitar -eq $true) {
         $btn_ConectarAzure.Enabled = $false
         $btn_DesconectarAzure.Enabled = $true
-        $frm_Main.ClientSize = '495,400'
+        $frm_Main.ClientSize = '495, 365'
         $txt_AppId.Enabled = $true
         $txt_Password.Enabled = $true
         $btn_Enviar.Enabled = $true
     } else {
         $btn_ConectarAzure.Enabled = $true
         $btn_DesconectarAzure.Enabled = $false
-        $frm_Main.ClientSize = '495,172'
+        $frm_Main.ClientSize = '495, 170'
         $txt_AppId.Enabled = $false
         $txt_Password.Enabled = $false
         $btn_Enviar.Enabled = $false
