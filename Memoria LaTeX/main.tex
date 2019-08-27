@@ -1,5 +1,8 @@
 \documentclass[twoside]{esi-tfm}
 \usepackage{custom}
+\usepackage{caption}
+\usepackage{eurosym}
+\usepackage{subfig}
 \input{metadata.tex}
 
 
@@ -8,11 +11,13 @@
 \cover
 \bastardtitle
 \frontpage
-\signatures
 
 \frontmatter
 \copyrightpage
 \jury
+
+\newcommand{\specialcell}[2][l]{%
+	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 
 \input{resumen.tex}
 
@@ -20,6 +25,8 @@
 \dedication{A alguien querido y/o respetado}
 
 \tableofcontents
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla}
 \listoftables
 \listoffigures
 \lstlistoflistings
@@ -42,7 +49,7 @@
 
 
 \backmatter
-\bibliography{main}
+\bibliography{main,references_mend}
 \cleardoublepage
 
 \end{document}

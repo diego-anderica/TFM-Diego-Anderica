@@ -71,6 +71,8 @@
 \usepackage{epsfig}
 \graphicspath{{figures/}{/usr/share/arco/figures/}}
 
+\newcommand{\source}[1]{\caption*{Fuente: {#1}} }
+
 %% -- COLORES ------------------------------------------------------------------
 \usepackage[table]{xcolor}
 \definecolor{white}{gray}{1}
@@ -204,7 +206,7 @@
 
 
 %% -- BIBLIOGRAFÍA -------------------------------------------------------------
-\bibliographystyle{es-alpha}
+\bibliographystyle{plain}
 
 \newcommand{\bibfont}{\small}      % Bibliography's font size
 %% \setlength{\bibhang}{4ex}       % Indent of Bibliography entries
@@ -373,14 +375,14 @@
 \newcommand{\@advisorFirst}{}
 \newcommand{\advisorFirst}[1]{%
   \renewcommand{\@advisorFirst}{#1}}
-\newcommand{\@putAdvisorFirst}{Tutor: \@advisorFirst\par}
+\newcommand{\@putAdvisorFirst}{Director: \@advisorFirst\par}
 
 \newcommand{\@advisorSecond}{}
 \newcommand{\advisorSecond}[1]{%
   \renewcommand{\@advisorSecond}{#1}}
 \newcommand{\@putAdvisorSecond}{
   \ifdefempty{\@advisorSecond}{}{
-    Cotutor: \@advisorSecond\par}}
+    Director: \@advisorSecond\par}}
 
 \newcommand{\@validator}{}
 \newcommand{\validator}[1]{%
@@ -690,5 +692,7 @@
 \newcommand{\quoteauthor}[1]{\par\hfill#1\hspace{1em}\mbox{}}
 \newcommand{\FIXME}[1]{\noindent\textcolor{red}{\textbf{FIXME:} #1}}
 \newcommand{\FIXED}[1]{\noindent\textcolor{green}{\textbf{FIXED:} #1}}
+
+\newcommand{\REDNOTE}[1]{\noindent\textcolor{red}{\textbf{*********} #1 *********}}
 
 %\makeatother
