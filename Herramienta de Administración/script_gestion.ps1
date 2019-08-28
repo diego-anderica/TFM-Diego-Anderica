@@ -8,7 +8,36 @@
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName PresentationCore,PresentationFramework
+Add-Type -Assembly System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
+
+####################################################
+############## Iconos e Imágenes ###################
+####################################################
+
+$app_icon     = [System.Drawing.Icon]::ExtractAssociatedIcon(".\resources\app_icon.ico")
+$back_image   = [System.Drawing.Image]::FromFile(".\resources\back.ico")
+
+####################################################
+############## Iconos e Imágenes ###################
+####################################################
+
+
+
+####################################################
+################### Fuentes ########################
+####################################################
+
+$fnt_10Bold    = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$fnt_14Bold    = New-Object System.Drawing.Font("Microsoft Sans Serif", 14, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$fnt_10Regular = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$fnt_18Bold    = New-Object System.Drawing.Font("Microsoft Sans Serif", 18, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$fnt_16Bold    = New-Object System.Drawing.Font("Microsoft Sans Serif", 16, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$fnt_12Bold    = New-Object System.Drawing.Font("Microsoft Sans Serif", 12, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+
+####################################################
+################### Fuentes ########################
+####################################################
 
 
 
@@ -23,20 +52,20 @@ $frm_Main.TopMost                                       = $false
 $frm_Main.MaximizeBox                                   = $false
 $frm_Main.Name                                          = "frm_Main"
 $frm_Main.FormBorderStyle                               = [System.Windows.Forms.FormBorderStyle]::FixedSingle
-$frm_Main.Icon                                          = "./resources/users.ico"
+$frm_Main.Icon                                          = $app_icon
 
 $btn_ConectarAzure                                      = New-Object system.Windows.Forms.Button
 $btn_ConectarAzure.Text                                 = "Conectar a Azure"
 $btn_ConectarAzure.Size                                 = New-Object System.Drawing.Size(148, 63)
 $btn_ConectarAzure.Location                             = New-Object System.Drawing.Point(16, 26)
-$btn_ConectarAzure.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$btn_ConectarAzure.Font                                 = $fnt_10Bold
 
 $lbl_Titulo                                             = New-Object system.Windows.Forms.Label
 $lbl_Titulo.Text                                        = "Herramienta de Administración de WVD"
 $lbl_Titulo.AutoSize                                    = $true
 $lbl_Titulo.Size                                        = New-Object System.Drawing.Size(624, 286)
 $lbl_Titulo.Location                                    = New-Object System.Drawing.Point(20, 16)
-$lbl_Titulo.Font                                        = New-Object System.Drawing.Font("Microsoft Sans Serif", 14, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_Titulo.Font                                        = $fnt_14Bold
 
 $gr_AzureConex                                          = New-Object system.Windows.Forms.Groupbox
 $gr_AzureConex.Size                                     = New-Object System.Drawing.Size(365, 100)
@@ -53,21 +82,21 @@ $txt_AppId.Multiline                                    = $false
 $txt_AppId.Size                                         = New-Object System.Drawing.Size(183, 20)
 $txt_AppId.Enabled                                      = $false
 $txt_AppId.Location                                     = New-Object System.Drawing.Point(112,24)
-$txt_AppId.Font                                         = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$txt_AppId.Font                                         = $fnt_10Regular
 
 $lbl_AppID                                              = New-Object system.Windows.Forms.Label
 $lbl_AppID.Text                                         = "App ID"
 $lbl_AppID.AutoSize                                     = $true
 $lbl_AppID.Size                                         = New-Object System.Drawing.Size(25, 10)
 $lbl_AppID.Location                                     = New-Object System.Drawing.Point(14, 28)
-$lbl_AppID.Font                                         = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_AppID.Font                                         = $fnt_10Regular
 
 $txt_Password                                           = New-Object system.Windows.Forms.TextBox
 $txt_Password.Multiline                                 = $false
 $txt_Password.Size                                      = New-Object System.Drawing.Size(183, 20)
 $txt_Password.Enabled                                   = $false
 $txt_Password.Location                                  = New-Object System.Drawing.Point(112, 62)
-$txt_Password.Font                                      = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$txt_Password.Font                                      = $fnt_10Regular
 $txt_Password.PasswordChar                              = '*'
 
 $lbl_Password                                           = New-Object system.Windows.Forms.Label
@@ -75,21 +104,21 @@ $lbl_Password.Text                                      = "Password"
 $lbl_Password.AutoSize                                  = $true
 $lbl_Password.Size                                      = New-Object System.Drawing.Size(25, 10)
 $lbl_Password.Location                                  = New-Object System.Drawing.Point(14, 65)
-$lbl_Password.Font                                      = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_Password.Font                                      = $fnt_10Regular
 
 $btn_Enviar                                             = New-Object system.Windows.Forms.Button
 $btn_Enviar.Text                                        = "Enviar"
 $btn_Enviar.Size                                        = New-Object System.Drawing.Size(86, 37)
 $btn_Enviar.Enabled                                     = $false
 $btn_Enviar.Location                                    = New-Object System.Drawing.Point(200, 308)
-$btn_Enviar.Font                                        = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$btn_Enviar.Font                                        = $fnt_10Bold
 
 $btn_DesconectarAzure                                   = New-Object system.Windows.Forms.Button
 $btn_DesconectarAzure.Text                              = "Desconectar de Azure"
 $btn_DesconectarAzure.Size                              = New-Object System.Drawing.Size(148, 63)
 $btn_DesconectarAzure.Enabled                           = $false
 $btn_DesconectarAzure.Location                          = New-Object System.Drawing.Point(200, 26)
-$btn_DesconectarAzure.Font                              = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$btn_DesconectarAzure.Font                              = $fnt_10Bold
 
 $btn_ConectarAzure.Add_Click( { conectarAzure } )
 $btn_DesconectarAzure.Add_Click( { desconectarAzure $true } )
@@ -115,10 +144,11 @@ $frm_Menu.FormBorderStyle                               = [System.Windows.Forms.
 $frm_Menu.MaximizeBox                                   = $false
 $frm_Menu.Name                                          = "frm_Menu"
 $frm_Menu.Text                                          = "Administración de WVD - Menú Principal"
+$frm_Menu.Icon                                          = $app_icon
 
 $lbl_MenuPcpal                                          = New-Object System.Windows.Forms.Label
 $lbl_MenuPcpal.AutoSize                                 = $true
-$lbl_MenuPcpal.Font                                     = New-Object System.Drawing.Font("Microsoft Sans Serif", 18, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_MenuPcpal.Font                                     = $fnt_18Bold
 $lbl_MenuPcpal.Location                                 = New-Object System.Drawing.Point(97, 20)
 $lbl_MenuPcpal.Name                                     = "lbl_MenuPcpal"
 $lbl_MenuPcpal.Size                                     = New-Object System.Drawing.Size(228, 36)
@@ -126,7 +156,7 @@ $lbl_MenuPcpal.Text                                     = "Menú Principal"
 
 $lbl_PreguntaMenu                                       = New-Object System.Windows.Forms.Label
 $lbl_PreguntaMenu.AutoSize                              = $true
-$lbl_PreguntaMenu.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_PreguntaMenu.Font                                  = $fnt_10Regular
 $lbl_PreguntaMenu.Location                              = New-Object System.Drawing.Point(60, 60)
 $lbl_PreguntaMenu.Name                                  = "lbl_PreguntaMenu"
 $lbl_PreguntaMenu.Size                                  = New-Object System.Drawing.Size(230, 36)
@@ -138,15 +168,15 @@ $btn_InfoHostPool.Name                                  = "btn_InfoHostPool"
 $btn_InfoHostPool.Size                                  = New-Object System.Drawing.Size(235, 100)
 $btn_InfoHostPool.Text                                  = "Ver HostPools Disponibles"
 $btn_InfoHostPool.UseVisualStyleBackColor               = $true
-$btn_InfoHostPool.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$btn_InfoHostPool.Font                                  = $fnt_10Bold
 
 $btn_GestionGrupos                                      = New-Object System.Windows.Forms.Button
 $btn_GestionGrupos.Location                             = New-Object System.Drawing.Point(95, 240)
 $btn_GestionGrupos.Name                                 = "btn_GestionGrupos"
 $btn_GestionGrupos.Size                                 = New-Object System.Drawing.Size(235, 100)
-$btn_GestionGrupos.Text                                 = "Gestionar Grupos de Aplicaciones"
+$btn_GestionGrupos.Text                                 = "Administrar Grupos de Aplicaciones"
 $btn_GestionGrupos.UseVisualStyleBackColor              = $true
-$btn_GestionGrupos.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 10, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Point, 0)
+$btn_GestionGrupos.Font                                 = $fnt_10Bold
 
 $btn_InfoHostPool.Add_Click( { lanzarVentana $frm_InfoHostPool } )
 $btn_GestionGrupos.Add_Click( { lanzarVentana $frm_GestionGrupos } )
@@ -169,10 +199,11 @@ $frm_InfoHostPool.FormBorderStyle                       = [System.Windows.Forms.
 $frm_InfoHostPool.MaximizeBox                           = $false
 $frm_InfoHostPool.Name                                  = "frm_InfoHostPool"
 $frm_InfoHostPool.Text                                  = "Administración de WVD - Info HostPools"
+$frm_InfoHostPool.Icon                                  = $app_icon
 
 $lbl_InfoHostPool                                       = New-Object System.Windows.Forms.Label
 $lbl_InfoHostPool.AutoSize                              = $true
-$lbl_InfoHostPool.Font                                  = New-Object System.Drawing.Font("Microsoft Sans Serif", 16.2,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_InfoHostPool.Font                                  = $fnt_16Bold
 $lbl_InfoHostPool.Location                              = New-Object System.Drawing.Point(155, 9)
 $lbl_InfoHostPool.Name                                  = "lbl_InfoHostPool"
 $lbl_InfoHostPool.Size                                  = New-Object System.Drawing.Size(363, 32)
@@ -184,6 +215,7 @@ $cb_ListaHostPools.Location                             = New-Object System.Draw
 $cb_ListaHostPools.Name                                 = "cb_ListaHostPools"
 $cb_ListaHostPools.Size                                 = New-Object System.Drawing.Size(390, 24)
 $cb_ListaHostPools.DropDownStyle                        = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$cb_ListaHostPools.Font                                 = $fnt_10Regular
 
 $lbl_SeleccionHostPool                                  = New-Object System.Windows.Forms.Label
 $lbl_SeleccionHostPool.AutoSize                         = $true
@@ -203,6 +235,7 @@ $txt_Ring.Location                                      = New-Object System.Draw
 $txt_Ring.Name                                          = "txt_Ring"
 $txt_Ring.Size                                          = New-Object System.Drawing.Size(410, 22)
 $txt_Ring.ReadOnly                                      = $true
+$txt_Ring.Font                                          = $fnt_10Regular
 
 $lbl_Ring                                               = New-Object System.Windows.Forms.Label
 $lbl_Ring.AutoSize                                      = $true
@@ -216,6 +249,7 @@ $txt_ValidationEnv.Location                             = New-Object System.Draw
 $txt_ValidationEnv.Name                                 = "txt_ValidationEnv"
 $txt_ValidationEnv.Size                                 = New-Object System.Drawing.Size(410, 22)
 $txt_ValidationEnv.ReadOnly                             = $true
+$txt_ValidationEnv.Font                                 = $fnt_10Regular
 
 $lbl_ValidationEnv                                      = New-Object System.Windows.Forms.Label
 $lbl_ValidationEnv.AutoSize                             = $true
@@ -229,6 +263,7 @@ $txt_LoadBalancerType.Location                          = New-Object System.Draw
 $txt_LoadBalancerType.Name                              = "txt_LoadBalancerType"
 $txt_LoadBalancerType.Size                              = New-Object System.Drawing.Size(410, 22)
 $txt_LoadBalancerType.ReadOnly                          = $true
+$txt_LoadBalancerType.Font                              = $fnt_10Regular
 
 $lbl_LoadBalancerType                                   = New-Object System.Windows.Forms.Label
 $lbl_LoadBalancerType.AutoSize                          = $true
@@ -242,6 +277,7 @@ $txt_MaxSessionLimit.Location                           = New-Object System.Draw
 $txt_MaxSessionLimit.Name                               = "txt_MaxSessionLimit"
 $txt_MaxSessionLimit.Size                               = New-Object System.Drawing.Size(410, 22)
 $txt_MaxSessionLimit.ReadOnly                           = $true
+$txt_MaxSessionLimit.Font                               = $fnt_10Regular
 
 $lbl_MaxSessionLimit                                    = New-Object System.Windows.Forms.Label
 $lbl_MaxSessionLimit.AutoSize                           = $true
@@ -255,6 +291,7 @@ $txt_CustomRdpProperty.Location                         = New-Object System.Draw
 $txt_CustomRdpProperty.Name                             = "txt_CustomRdpProperty"
 $txt_CustomRdpProperty.Size                             = New-Object System.Drawing.Size(410, 22)
 $txt_CustomRdpProperty.ReadOnly                         = $true
+$txt_CustomRdpProperty.Font                             = $fnt_10Regular
 
 $lbl_CustomRdpProperty                                  = New-Object System.Windows.Forms.Label
 $lbl_CustomRdpProperty.AutoSize                         = $true
@@ -268,6 +305,7 @@ $txt_Persistent.Location                                = New-Object System.Draw
 $txt_Persistent.Name                                    = "txt_Persistent"
 $txt_Persistent.Size                                    = New-Object System.Drawing.Size(410, 22)
 $txt_Persistent.ReadOnly                                = $true
+$txt_Persistent.Font                                    = $fnt_10Regular
 
 $lbl_Persistent                                         = New-Object System.Windows.Forms.Label
 $lbl_Persistent.AutoSize                                = $true
@@ -281,6 +319,7 @@ $txt_Description.Location                               = New-Object System.Draw
 $txt_Description.Name                                   = "txt_Description"
 $txt_Description.Size                                   = New-Object System.Drawing.Size(410, 22)
 $txt_Description.ReadOnly                               = $true
+$txt_Description.Font                                   = $fnt_10Regular
 
 $lbl_Description                                        = New-Object System.Windows.Forms.Label
 $lbl_Description.AutoSize                               = $true
@@ -294,6 +333,7 @@ $txt_FriendlyName.Location                              = New-Object System.Draw
 $txt_FriendlyName.Name                                  = "txt_FriendlyName"
 $txt_FriendlyName.Size                                  = New-Object System.Drawing.Size(410, 22)
 $txt_FriendlyName.ReadOnly                              = $true
+$txt_FriendlyName.Font                                  = $fnt_10Regular
 
 $lbl_FriendlyName                                       = New-Object System.Windows.Forms.Label
 $lbl_FriendlyName.AutoSize                              = $true
@@ -307,6 +347,7 @@ $txt_HostPoolName.Location                              = New-Object System.Draw
 $txt_HostPoolName.Name                                  = "txt_HostPoolName"
 $txt_HostPoolName.Size                                  = New-Object System.Drawing.Size(410, 22)
 $txt_HostPoolName.ReadOnly                              = $true
+$txt_HostPoolName.Font                                  = $fnt_10Regular
 
 $lbl_HostPoolName                                       = New-Object System.Windows.Forms.Label
 $lbl_HostPoolName.AutoSize                              = $true
@@ -320,12 +361,14 @@ $txt_TenantGroupName.Location                           = New-Object System.Draw
 $txt_TenantGroupName.Name                               = "txt_TenantGroupName"
 $txt_TenantGroupName.Size                               = New-Object System.Drawing.Size(410, 22)
 $txt_TenantGroupName.ReadOnly                           = $true
+$txt_TenantGroupName.Font                               = $fnt_10Regular
 
 $txt_TenantName                                         = New-Object System.Windows.Forms.TextBox
 $txt_TenantName.Location                                = New-Object System.Drawing.Point(155, 31)
 $txt_TenantName.Name                                    = "txt_TenantName"
 $txt_TenantName.Size                                    = New-Object System.Drawing.Size(410, 22)
 $txt_TenantName.ReadOnly                                = $true
+$txt_TenantName.Font                                    = $fnt_10Regular
 
 $lbl_TenantGroupName                                    = New-Object System.Windows.Forms.Label
 $lbl_TenantGroupName.AutoSize                           = $true
@@ -345,8 +388,9 @@ $btn_VolverInfoHostPool                                 = New-Object System.Wind
 $btn_VolverInfoHostPool.Location                        = New-Object System.Drawing.Point(205, 610)
 $btn_VolverInfoHostPool.Name                            = "btn_Volver"
 $btn_VolverInfoHostPool.Size                            = New-Object System.Drawing.Size(229, 64)
-$btn_VolverInfoHostPool.Text                            = "Volver"
 $btn_VolverInfoHostPool.UseVisualStyleBackColor         = $true
+$btn_VolverInfoHostPool.Image                           = $back_image
+$btn_VolverInfoHostPool.ImageAlign                      = [System.Drawing.ContentAlignment]::MiddleCenter
 
 $frm_InfoHostPool.Add_Load( { cargarHostPools $frm_InfoHostPool $cb_ListaHostPools } )
 $btn_VolverInfoHostPool.Add_Click( { cerrarVentana $frm_InfoHostPool } )
@@ -372,6 +416,7 @@ $frm_GestionGrupos.MainMenuStrip                        = $mnu_Strip
 $frm_GestionGrupos.MaximizeBox                          = $false
 $frm_GestionGrupos.Name                                 = "frm_GestionGrupos"
 $frm_GestionGrupos.Text                                 = "Administración de WVD - Gestionar Grupos Apps"
+$frm_GestionGrupos.Icon                                 = $app_icon
 
 $mnu_Strip                                              = New-Object System.Windows.Forms.MenuStrip
 $mnu_Strip.ImageScalingSize                             = New-Object System.Drawing.Size(20, 20)
@@ -392,7 +437,7 @@ $mnu_Archivo.Text                                       = "Archivo"
 
 $lbl_SeleccionHostPoolGestion                           = New-Object System.Windows.Forms.Label
 $lbl_SeleccionHostPoolGestion.AutoSize                  = $true
-$lbl_SeleccionHostPoolGestion.Font                      = New-Object System.Drawing.Font("Microsoft Sans Serif", 10.2,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_SeleccionHostPoolGestion.Font                      = $fnt_10Regular
 $lbl_SeleccionHostPoolGestion.Location                  = New-Object System.Drawing.Point(102, 53)
 $lbl_SeleccionHostPoolGestion.Name                      = "lbl_SeleccionHostPoolGestion"
 $lbl_SeleccionHostPoolGestion.Size                      = New-Object System.Drawing.Size(268, 20)
@@ -404,11 +449,12 @@ $cb_SeleccionHostPoolGestion.Location                   = New-Object System.Draw
 $cb_SeleccionHostPoolGestion.Name                       = "cb_SeleccionHostPoolGestion"
 $cb_SeleccionHostPoolGestion.Size                       = New-Object System.Drawing.Size(444, 24)
 $cb_SeleccionHostPoolGestion.DropDownStyle              = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$cb_SeleccionHostPoolGestion.Font                       = $fnt_10Regular
 
 $gr_AppsDisponibles                                     = New-Object System.Windows.Forms.GroupBox
 $gr_AppsDisponibles.Location                            = New-Object System.Drawing.Point(12, 99)
 $gr_AppsDisponibles.Name                                = "gr_AppsDisponibles"
-$gr_AppsDisponibles.Size                                = New-Object System.Drawing.Size(543, 280)
+$gr_AppsDisponibles.Size                                = New-Object System.Drawing.Size(543, 285)
 $gr_AppsDisponibles.Text                                = "Grupos de Apps Disponibles"
 
 $lst_GruposApps                                         = New-Object System.Windows.Forms.ListBox
@@ -417,7 +463,7 @@ $lst_GruposApps.ItemHeight                              = 16
 $lst_GruposApps.Location                                = New-Object System.Drawing.Point(6, 21)
 $lst_GruposApps.Name                                    = "lst_GruposApps"
 $lst_GruposApps.Size                                    = New-Object System.Drawing.Size(531, 260)
-$lst_GruposApps.Font                                    = New-Object System.Drawing.Font("Microsoft Sans Serif", 12,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point, 0)
+$lst_GruposApps.Font                                    = $fnt_10Regular
 
 $btn_CrearGrupoApps                                     = New-Object System.Windows.Forms.Button
 $btn_CrearGrupoApps.Location                            = New-Object System.Drawing.Point(83, 407)
@@ -425,6 +471,7 @@ $btn_CrearGrupoApps.Name                                = "btn_CrearGrupoApps"
 $btn_CrearGrupoApps.Size                                = New-Object System.Drawing.Size(317, 82)
 $btn_CrearGrupoApps.Text                                = "Crear nuevo grupo de aplicaciones"
 $btn_CrearGrupoApps.UseVisualStyleBackColor             = $true
+$btn_CrearGrupoApps.Font                                = $fnt_10Regular
 
 $btn_EliminarGrupoApps                                  = New-Object System.Windows.Forms.Button
 $btn_EliminarGrupoApps.Location                         = New-Object System.Drawing.Point(523, 407)
@@ -433,6 +480,7 @@ $btn_EliminarGrupoApps.Size                             = New-Object System.Draw
 $btn_EliminarGrupoApps.Text                             = "Eliminar grupo de aplicaciones"
 $btn_EliminarGrupoApps.UseVisualStyleBackColor          = $true
 $btn_EliminarGrupoApps.Enabled                          = $false
+$btn_EliminarGrupoApps.Font                             = $fnt_10Regular
 
 $btn_InfoGrupoApps                                      = New-Object System.Windows.Forms.Button
 $btn_InfoGrupoApps.Location                             = New-Object System.Drawing.Point(600, 149)
@@ -441,6 +489,7 @@ $btn_InfoGrupoApps.Size                                 = New-Object System.Draw
 $btn_InfoGrupoApps.Text                                 = "Ver información del grupo"
 $btn_InfoGrupoApps.UseVisualStyleBackColor              = $true
 $btn_InfoGrupoApps.Enabled                              = $false
+$btn_InfoGrupoApps.Font                                 = $fnt_10Regular
 
 $btn_EditarGrupoApps                                    = New-Object System.Windows.Forms.Button
 $btn_EditarGrupoApps.Location                           = New-Object System.Drawing.Point(600, 276)
@@ -449,13 +498,16 @@ $btn_EditarGrupoApps.Size                               = New-Object System.Draw
 $btn_EditarGrupoApps.Text                               = "Editar parámetros del grupo"
 $btn_EditarGrupoApps.UseVisualStyleBackColor            = $true
 $btn_EditarGrupoApps.Enabled                            = $false
+$btn_EditarGrupoApps.Font                               = $fnt_10Regular
 
 $btn_VolverGestionGrupos                                = New-Object System.Windows.Forms.Button
 $btn_VolverGestionGrupos.Location                       = New-Object System.Drawing.Point(304, 519)
 $btn_VolverGestionGrupos.Name                           = "btn_VolverGestionGrupos"
 $btn_VolverGestionGrupos.Size                           = New-Object System.Drawing.Size(317, 79)
-$btn_VolverGestionGrupos.Text                           = "Volver"
+$btn_VolverGestionGrupos.Image                          = $back_image
+$btn_VolverGestionGrupos.ImageAlign                     = [System.Drawing.ContentAlignment]::MiddleCenter
 $btn_VolverGestionGrupos.UseVisualStyleBackColor        = $true
+$btn_VolverGestionGrupos.Font                           = $fnt_10Regular
 
 $mnuItem_CerrarVentana.Add_Click( { cerrarVentana $frm_GestionGrupos } )
 $btn_CrearGrupoApps.Add_Click( { lanzarVentana $frm_CrearGrupo } )
@@ -490,10 +542,11 @@ $frm_InfoGrupoApps.FormBorderStyle                      = [System.Windows.Forms.
 $frm_InfoGrupoApps.MaximizeBox                          = $false
 $frm_InfoGrupoApps.Name                                 = "frm_InfoGrupoApps"
 $frm_InfoGrupoApps.Text                                 = "Administración de WVD - Info Grupo de Apps"
+$frm_InfoGrupoApps.Icon                                 = $app_icon
 
 $lbl_InfoGrupoApps                                      = New-Object System.Windows.Forms.Label
 $lbl_InfoGrupoApps.AutoSize                             = $true
-$lbl_InfoGrupoApps.Font                                 = New-Object System.Drawing.Font("Microsoft Sans Serif", 16.2,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_InfoGrupoApps.Font                                 = $fnt_16Bold
 $lbl_InfoGrupoApps.Location                             = New-Object System.Drawing.Point(233, 9)
 $lbl_InfoGrupoApps.Name                                 = "lbl_InfoGrupoApps"
 $lbl_InfoGrupoApps.Size                                 = New-Object System.Drawing.Size(540, 32)
@@ -552,7 +605,7 @@ $lbl_ResourceType.AutoSize                              = $true
 $lbl_ResourceType.Location                              = New-Object System.Drawing.Point(38, 275)
 $lbl_ResourceType.Name                                  = "lbl_ResourceType"
 $lbl_ResourceType.Size                                  = New-Object System.Drawing.Size(101, 17)
-$lbl_ResourceType.Text = "ResourceType"
+$lbl_ResourceType.Text                                  = "ResourceType"
 
 $lbl_FriendlyNameGr                                     = New-Object System.Windows.Forms.Label
 $lbl_FriendlyNameGr.AutoSize                            = $true
@@ -626,7 +679,8 @@ $btn_VolverGr                                           = New-Object System.Wind
 $btn_VolverGr.Location                                  = New-Object System.Drawing.Point(342, 631)
 $btn_VolverGr.Name                                      = "btn_VolverGr"
 $btn_VolverGr.Size                                      = New-Object System.Drawing.Size(287, 76)
-$btn_VolverGr.Text                                      = "Volver"
+$btn_VolverGr.Image                                     = $back_image
+$btn_VolverGr.ImageAlign                                = [System.Drawing.ContentAlignment]::MiddleCenter
 $btn_VolverGr.UseVisualStyleBackColor                   = $true
 
 $btn_EditarApps                                         = New-Object System.Windows.Forms.Button
@@ -687,6 +741,7 @@ $frm_AddUsuario.FormBorderStyle                         = [System.Windows.Forms.
 $frm_AddUsuario.MaximizeBox                             = $false
 $frm_AddUsuario.Name                                    = "frm_AddUsuario"
 $frm_AddUsuario.Text                                    = "Añadir Usuario"
+$frm_AddUsuario.Icon                                    = $app_icon
 
 $lbl_CorreoUsuario                                      = New-Object System.Windows.Forms.Label
 $lbl_CorreoUsuario.AutoSize                             = $true
@@ -696,7 +751,7 @@ $lbl_CorreoUsuario.Size                                 = New-Object System.Draw
 $lbl_CorreoUsuario.Text                                 = "Correo Electrónico:"
 
 $lbl_NotaAddUsuario                                     = New-Object System.Windows.Forms.Label
-$lbl_NotaAddUsuario.Font                                = New-Object System.Drawing.Font("Microsoft Sans Serif", 12,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point, 0)
+$lbl_NotaAddUsuario.Font                                = $fnt_12Bold
 $lbl_NotaAddUsuario.Location                            = New-Object System.Drawing.Point(71, 65)
 $lbl_NotaAddUsuario.Name                                = "lbl_NotaAddUsuario"
 $lbl_NotaAddUsuario.Size                                = New-Object System.Drawing.Size(579, 66)
@@ -735,6 +790,7 @@ $frm_CrearGrupo.FormBorderStyle                         = [System.Windows.Forms.
 $frm_CrearGrupo.MaximizeBox                             = $false
 $frm_CrearGrupo.Name                                    = "frm_CrearGrupo"
 $frm_CrearGrupo.Text                                    = "Administración de WVD - Nuevo Grupo"
+$frm_CrearGrupo.Icon                                    = $app_icon
 
 $lbl_NombreNGrupo                                       = New-Object System.Windows.Forms.Label
 $lbl_NombreNGrupo.AutoSize                              = $true
@@ -748,6 +804,7 @@ $txt_NombreNGrupo.Location                              = New-Object System.Draw
 $txt_NombreNGrupo.Name                                  = "txt_NombreNGrupo"
 $txt_NombreNGrupo.Size                                  = New-Object System.Drawing.Size(355, 22)
 $txt_NombreNGrupo.TabIndex                              = 1
+$txt_NombreNGrupo.Font                                  = $fnt_10Regular
 
 $lbl_DescripciónNGrupo                                  = New-Object System.Windows.Forms.Label
 $lbl_DescripciónNGrupo.AutoSize                         = $true
@@ -761,6 +818,7 @@ $txt_DescripciónNGrupo.Location                         = New-Object System.Draw
 $txt_DescripciónNGrupo.Name                             = "txt_DescripciónNGrupo"
 $txt_DescripciónNGrupo.Size                             = New-Object System.Drawing.Size(355, 22)
 $txt_DescripciónNGrupo.TabIndex                         = 2
+$txt_DescripciónNGrupo.Font                             = $fnt_10Regular
 
 $lbl_FriendlyNameNGrupo                                 = New-Object System.Windows.Forms.Label
 $lbl_FriendlyNameNGrupo.AutoSize                        = $true
@@ -774,6 +832,7 @@ $txt_FriendlyNameNGrupo.Location                        = New-Object System.Draw
 $txt_FriendlyNameNGrupo.Name                            = "txt_FriendlyNameNGrupo"
 $txt_FriendlyNameNGrupo.Size                            = New-Object System.Drawing.Size(355, 22)
 $txt_FriendlyNameNGrupo.TabIndex                        = 3
+$txt_FriendlyNameNGrupo.Font                            = $fnt_10Regular
 
 $lbl_TipoRecursosNGrupo                                 = New-Object System.Windows.Forms.Label
 $lbl_TipoRecursosNGrupo.AutoSize                        = $true
@@ -789,6 +848,7 @@ $cb_TipoRecursosNGrupo.Name                             = "cb_TipoRecursosNGrupo
 $cb_TipoRecursosNGrupo.Size                             = New-Object System.Drawing.Size(355, 24)
 $cb_TipoRecursosNGrupo.DropDownStyle                    = [System.Windows.Forms.ComboBoxStyle]::DropDownList
 $cb_TipoRecursosNGrupo.TabIndex                         = 4
+$cb_TipoRecursosNGrupo.Font                             = $fnt_10Regular
 
 $btn_CancelarNGrupo                                     = New-Object System.Windows.Forms.Button
 $btn_CancelarNGrupo.Location                            = New-Object System.Drawing.Point(57, 177)
@@ -797,6 +857,7 @@ $btn_CancelarNGrupo.Size                                = New-Object System.Draw
 $btn_CancelarNGrupo.Text                                = "Cancelar"
 $btn_CancelarNGrupo.UseVisualStyleBackColor             = $true
 $btn_CancelarNGrupo.TabIndex                            = 5
+$btn_CancelarNGrupo.Font                                = $fnt_10Regular
 
 $btn_CrearNGrupo                                        = New-Object System.Windows.Forms.Button
 $btn_CrearNGrupo.Location                               = New-Object System.Drawing.Point(346, 177)
@@ -805,6 +866,7 @@ $btn_CrearNGrupo.Size                                   = New-Object System.Draw
 $btn_CrearNGrupo.Text                                   = "Crear Grupo"
 $btn_CrearNGrupo.UseVisualStyleBackColor                = $true
 $btn_CrearNGrupo.TabIndex                               = 6
+$btn_CrearNGrupo.Font                                   = $fnt_10Regular
 
 $btn_CancelarNGrupo.Add_Click( { cancelarCreacionGrupo } )
 $btn_CrearNGrupo.Add_Click( { crearNGrupo } )
