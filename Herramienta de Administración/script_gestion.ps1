@@ -222,7 +222,7 @@ $lbl_SeleccionHostPool.AutoSize                         = $true
 $lbl_SeleccionHostPool.Location                         = New-Object System.Drawing.Point(28, 76)
 $lbl_SeleccionHostPool.Name                             = "lbl_SeleccionHostPool"
 $lbl_SeleccionHostPool.Size                             = New-Object System.Drawing.Size(220, 17)
-$lbl_SeleccionHostPool.Text                             = "Selecciona un HostPool Disponible"
+$lbl_SeleccionHostPool.Text                             = "Seleccione un HostPool Disponible"
 
 $gr_ParametrosHostPool                                  = New-Object System.Windows.Forms.GroupBox
 $gr_ParametrosHostPool.Location                         = New-Object System.Drawing.Point(42, 132)
@@ -410,7 +410,7 @@ $frm_InfoHostPool.Controls.AddRange(@($btn_VolverInfoHostPool, $gr_ParametrosHos
 ####################################################
 
 $frm_GestionGrupos                                      = New-Object System.Windows.Forms.Form
-$frm_GestionGrupos.ClientSize                           = New-Object System.Drawing.Size(885, 621)
+$frm_GestionGrupos.ClientSize                           = New-Object System.Drawing.Size(885, 620)
 $frm_GestionGrupos.FormBorderStyle                      = [System.Windows.Forms.FormBorderStyle]::FixedSingle
 $frm_GestionGrupos.MainMenuStrip                        = $mnu_Strip
 $frm_GestionGrupos.MaximizeBox                          = $false
@@ -418,41 +418,33 @@ $frm_GestionGrupos.Name                                 = "frm_GestionGrupos"
 $frm_GestionGrupos.Text                                 = "Administración de WVD - Gestionar Grupos Apps"
 $frm_GestionGrupos.Icon                                 = $app_icon
 
-$mnu_Strip                                              = New-Object System.Windows.Forms.MenuStrip
-$mnu_Strip.ImageScalingSize                             = New-Object System.Drawing.Size(20, 20)
-$mnu_Strip.Location                                     = New-Object System.Drawing.Point(0, 0)
-$mnu_Strip.Name                                         = "mnu_Strip"
-$mnu_Strip.Size                                         = New-Object System.Drawing.Size(885, 28)
-$mnu_Strip.Text                                         = "menuStrip"
 
-$mnuItem_CerrarVentana                                  = New-Object System.Windows.Forms.ToolStripMenuItem
-$mnuItem_CerrarVentana.Name                             = "mnuItem_CerrarVentana"
-$mnuItem_CerrarVentana.Size                             = New-Object System.Drawing.Size(224, 26)
-$mnuItem_CerrarVentana.Text                             = "Cerrar Ventana"
-
-$mnu_Archivo                                            = New-Object System.Windows.Forms.ToolStripMenuItem
-$mnu_Archivo.Name                                       = "mnu_Archivo"
-$mnu_Archivo.Size                                       = New-Object System.Drawing.Size(73, 24)
-$mnu_Archivo.Text                                       = "Archivo"
+$lbl_TituloGestionGrupos                                = New-Object System.Windows.Forms.Label
+$lbl_TituloGestionGrupos.AutoSize                       = $true
+$lbl_TituloGestionGrupos.Font                           = $fnt_16Bold
+$lbl_TituloGestionGrupos.Location                       = New-Object System.Drawing.Point(240, 9)
+$lbl_TituloGestionGrupos.Name                           = "lbl_TituloGestionGrupos"
+$lbl_TituloGestionGrupos.Size                           = New-Object System.Drawing.Size(363, 32)
+$lbl_TituloGestionGrupos.Text                           = "Gestionar Grupos de Aplicaciones"
 
 $lbl_SeleccionHostPoolGestion                           = New-Object System.Windows.Forms.Label
 $lbl_SeleccionHostPoolGestion.AutoSize                  = $true
 $lbl_SeleccionHostPoolGestion.Font                      = $fnt_10Regular
-$lbl_SeleccionHostPoolGestion.Location                  = New-Object System.Drawing.Point(102, 53)
+$lbl_SeleccionHostPoolGestion.Location                  = New-Object System.Drawing.Point(72, 60)
 $lbl_SeleccionHostPoolGestion.Name                      = "lbl_SeleccionHostPoolGestion"
 $lbl_SeleccionHostPoolGestion.Size                      = New-Object System.Drawing.Size(268, 20)
-$lbl_SeleccionHostPoolGestion.Text                      = "Selecciona un HostPool disponible"
+$lbl_SeleccionHostPoolGestion.Text                      = "Seleccione un HostPool disponible"
 
 $cb_SeleccionHostPoolGestion                            = New-Object System.Windows.Forms.ComboBox
 $cb_SeleccionHostPoolGestion.FormattingEnabled          = $true
-$cb_SeleccionHostPoolGestion.Location                   = New-Object System.Drawing.Point(376, 51)
+$cb_SeleccionHostPoolGestion.Location                   = New-Object System.Drawing.Point(346, 58)
 $cb_SeleccionHostPoolGestion.Name                       = "cb_SeleccionHostPoolGestion"
 $cb_SeleccionHostPoolGestion.Size                       = New-Object System.Drawing.Size(444, 24)
 $cb_SeleccionHostPoolGestion.DropDownStyle              = [System.Windows.Forms.ComboBoxStyle]::DropDownList
 $cb_SeleccionHostPoolGestion.Font                       = $fnt_10Regular
 
 $gr_AppsDisponibles                                     = New-Object System.Windows.Forms.GroupBox
-$gr_AppsDisponibles.Location                            = New-Object System.Drawing.Point(12, 99)
+$gr_AppsDisponibles.Location                            = New-Object System.Drawing.Point(12, 106)
 $gr_AppsDisponibles.Name                                = "gr_AppsDisponibles"
 $gr_AppsDisponibles.Size                                = New-Object System.Drawing.Size(543, 285)
 $gr_AppsDisponibles.Text                                = "Grupos de Apps Disponibles"
@@ -466,7 +458,7 @@ $lst_GruposApps.Size                                    = New-Object System.Draw
 $lst_GruposApps.Font                                    = $fnt_10Regular
 
 $btn_CrearGrupoApps                                     = New-Object System.Windows.Forms.Button
-$btn_CrearGrupoApps.Location                            = New-Object System.Drawing.Point(83, 407)
+$btn_CrearGrupoApps.Location                            = New-Object System.Drawing.Point(55, 414)
 $btn_CrearGrupoApps.Name                                = "btn_CrearGrupoApps"
 $btn_CrearGrupoApps.Size                                = New-Object System.Drawing.Size(317, 82)
 $btn_CrearGrupoApps.Text                                = "Crear nuevo grupo de aplicaciones"
@@ -474,7 +466,7 @@ $btn_CrearGrupoApps.UseVisualStyleBackColor             = $true
 $btn_CrearGrupoApps.Font                                = $fnt_10Regular
 
 $btn_EliminarGrupoApps                                  = New-Object System.Windows.Forms.Button
-$btn_EliminarGrupoApps.Location                         = New-Object System.Drawing.Point(523, 407)
+$btn_EliminarGrupoApps.Location                         = New-Object System.Drawing.Point(498, 414)
 $btn_EliminarGrupoApps.Name                             = "btn_EliminarGrupoApps"
 $btn_EliminarGrupoApps.Size                             = New-Object System.Drawing.Size(317, 82)
 $btn_EliminarGrupoApps.Text                             = "Eliminar grupo de aplicaciones"
@@ -483,7 +475,7 @@ $btn_EliminarGrupoApps.Enabled                          = $false
 $btn_EliminarGrupoApps.Font                             = $fnt_10Regular
 
 $btn_InfoGrupoApps                                      = New-Object System.Windows.Forms.Button
-$btn_InfoGrupoApps.Location                             = New-Object System.Drawing.Point(600, 149)
+$btn_InfoGrupoApps.Location                             = New-Object System.Drawing.Point(580, 156)
 $btn_InfoGrupoApps.Name                                 = "btn_InfoGrupoApps"
 $btn_InfoGrupoApps.Size                                 = New-Object System.Drawing.Size(264, 66)
 $btn_InfoGrupoApps.Text                                 = "Ver información del grupo"
@@ -492,7 +484,7 @@ $btn_InfoGrupoApps.Enabled                              = $false
 $btn_InfoGrupoApps.Font                                 = $fnt_10Regular
 
 $btn_EditarGrupoApps                                    = New-Object System.Windows.Forms.Button
-$btn_EditarGrupoApps.Location                           = New-Object System.Drawing.Point(600, 276)
+$btn_EditarGrupoApps.Location                           = New-Object System.Drawing.Point(580, 283)
 $btn_EditarGrupoApps.Name                               = "btn_EditarGrupoApps"
 $btn_EditarGrupoApps.Size                               = New-Object System.Drawing.Size(264, 66)
 $btn_EditarGrupoApps.Text                               = "Editar parámetros del grupo"
@@ -501,7 +493,7 @@ $btn_EditarGrupoApps.Enabled                            = $false
 $btn_EditarGrupoApps.Font                               = $fnt_10Regular
 
 $btn_VolverGestionGrupos                                = New-Object System.Windows.Forms.Button
-$btn_VolverGestionGrupos.Location                       = New-Object System.Drawing.Point(304, 519)
+$btn_VolverGestionGrupos.Location                       = New-Object System.Drawing.Point(274, 526)
 $btn_VolverGestionGrupos.Name                           = "btn_VolverGestionGrupos"
 $btn_VolverGestionGrupos.Size                           = New-Object System.Drawing.Size(317, 79)
 $btn_VolverGestionGrupos.Image                          = $back_image
@@ -509,7 +501,6 @@ $btn_VolverGestionGrupos.ImageAlign                     = [System.Drawing.Conten
 $btn_VolverGestionGrupos.UseVisualStyleBackColor        = $true
 $btn_VolverGestionGrupos.Font                           = $fnt_10Regular
 
-$mnuItem_CerrarVentana.Add_Click( { cerrarVentana $frm_GestionGrupos } )
 $btn_CrearGrupoApps.Add_Click( { lanzarVentana $frm_CrearGrupo } )
 $btn_EliminarGrupoApps.Add_Click( { eliminarGrupo } )
 $btn_InfoGrupoApps.Add_Click( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
@@ -518,13 +509,11 @@ $btn_VolverGestionGrupos.Add_Click( { cerrarVentana $frm_GestionGrupos } )
 $lst_GruposApps.Add_MouseDoubleClick( { lanzarVentanaInfoGrupo $lst_GruposApps.SelectedItem $false } )
 $lst_GruposApps.Add_SelectedIndexChanged( { comprobarSeleccionListaGruposApps } )
 $cb_SeleccionHostPoolGestion.Add_SelectedIndexChanged( { poblarListaGruposApps $cb_SeleccionHostPoolGestion.SelectedItem } )
-$frm_GestionGrupos.Add_Load( { cargarHostPools $frm_GestionGrupos $cb_SeleccionHostPoolGestion 
+$frm_GestionGrupos.Add_Load( { cargarHostPools $frm_GestionGrupos $cb_SeleccionHostPoolGestion
                                habilitarBotonesGestionGrupos $false} )
 
-$mnu_Strip.Items.AddRange(@($mnu_Archivo))
-$mnu_Archivo.DropDownItems.AddRange(@($mnuItem_CerrarVentana))
 $gr_AppsDisponibles.Controls.AddRange(@($lst_GruposApps))
-$frm_GestionGrupos.controls.AddRange(@($btn_VolverGestionGrupos, $btn_EditarGrupoApps, $btn_InfoGrupoApps, $btn_EliminarGrupoApps, $btn_CrearGrupoApps, $gr_AppsDisponibles, $cb_SeleccionHostPoolGestion, $lbl_SeleccionHostPoolGestion, $mnu_Strip))
+$frm_GestionGrupos.controls.AddRange(@($lbl_TituloGestionGrupos, $btn_VolverGestionGrupos, $btn_EditarGrupoApps, $btn_InfoGrupoApps, $btn_EliminarGrupoApps, $btn_CrearGrupoApps, $gr_AppsDisponibles, $cb_SeleccionHostPoolGestion, $lbl_SeleccionHostPoolGestion, $mnu_Strip))
 
 ####################################################
 ########### End frm_GestionGrupos ##################
