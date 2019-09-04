@@ -985,6 +985,14 @@ function cargarHostPools ($formulario, $combobox) {
     }
 }
 
+function peticionApps ($accion, $grupo) {
+    if ($accion -eq "OBTENER") {
+        return Get-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
+    } elseif ($accion -eq "ELIMINAR_GRUPO") {
+        return Get-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $grupo
+    }
+}
+
 ####################################################
 ############# End Global Functions #################
 ####################################################
@@ -1177,6 +1185,7 @@ function habilitarElementosEditarGrupo ($habilitar, $tipo) {
 function eliminarGrupo {
     if ($lst_GruposApps.SelectedIndex -ge 0) {
         if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "¿Eliminar grupo seleccionado?") -eq "Yes") {
+            eliminarAppsPublicadas "ELIMINAR_GRUPO" $lst_GruposApps.SelectedItem
             Remove-RdsAppGroup -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -Name $lst_GruposApps.SelectedItem
 
             if ($?) {
@@ -1188,7 +1197,14 @@ function eliminarGrupo {
             }
         }
     }
-    
+}
+
+function eliminarAppsPublicadas ($accion, $grupo) {
+    $apps = peticionApps $accion $grupo
+
+    foreach ($app in $apps) {
+        Remove-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $grupo -Name $app.RemoteAppName
+    }
 }
 
 ####################################################
@@ -1249,7 +1265,7 @@ function obtenerAppsGrupoApps {
         $chcklst_AppsGrupo.Items.Add("Los grupos de tipo 'Desktop' no son compatibles con apps")
         $chcklst_AppsGrupo.Refresh()
     } else {
-        $apps = Get-RdsRemoteApp -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado
+        $apps = peticionApps "OBTENER" $null
 
         if ($?) {
             poblarListaAppsGrupo $apps
@@ -1261,12 +1277,10 @@ function obtenerAppsGrupoApps {
 }
 
 function poblarListaAppsGrupo ($apps) {
-    $global:appsActivasFriendlyName = @()
     $global:appsActivasAppName = @()
     
     foreach ($app in $apps) {
-        $chcklst_AppsGrupo.Items.Add($app.FriendlyName, $true)
-        $global:appsActivasFriendlyName += ,$app.FriendlyName
+        $chcklst_AppsGrupo.Items.Add($app.RemoteAppName, $true)
         $global:appsActivasAppName += ,$app.RemoteAppName
     }
         
@@ -1274,7 +1288,7 @@ function poblarListaAppsGrupo ($apps) {
 
     if ($?) {
         foreach ($app in $appsTotales) {
-            if ($app.FriendlyName -notin $global:appsActivasFriendlyName) {
+            if ($app.AppAlias -notin $global:appsActivasAppName) {
                 $chcklst_AppsGrupo.Items.Add($app.AppAlias, $false)
             }
         }
@@ -1319,7 +1333,7 @@ function guardarCambiosAppsGrupo {
         }
 
         foreach ($app in $appsSeleccionadas) {
-            New-RdsRemoteApp -TenantName $global:tenantName -HostPoolname $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -Name $app.ToString().ToUpper() -AppAlias $app
+            New-RdsRemoteApp -TenantName $global:tenantName -HostPoolname $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -Name $app -AppAlias $app
         }
     }
 
