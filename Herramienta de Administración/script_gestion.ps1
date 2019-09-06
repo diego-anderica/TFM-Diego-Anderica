@@ -776,6 +776,8 @@ $btn_AddCorreos.Font                                    = $fnt_10Regular
 
 $btn_AddCorreos.Add_Click( { tratarUsuarios } )
 
+$frm_AddUsuario.add_FormClosing( { $txt_CorreosUsuarios.Text = "" } )
+
 $frm_AddUsuario.Controls.AddRange(@($btn_AddCorreos, $txt_CorreosUsuarios, $lbl_NotaAddUsuario, $lbl_CorreoUsuario))
 
 ####################################################
@@ -1389,6 +1391,46 @@ function comprobarSeleccionUsuarioGrupo {
     }
 }
 
+function addCSV {
+    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "Al seleccionar un archivo CSV se sobreescribirán los usuarios existentes. ¿Continuar?") -eq "Yes") {
+        $direcciones = @()
+
+        $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
+        $FileBrowser.filter = "Archivos CSV (*.csv)| *.csv"
+        [void]$FileBrowser.ShowDialog()
+
+        if ($FileBrowser.FileName) {
+            $usuarios = import-csv $FileBrowser.FileName -Delimiter ";"
+
+            if (!$usuarios) {
+                generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al leer el archivo."
+            } else {
+            
+                foreach ($usuario in $usuarios) {
+                    $direcciones += ,$usuario.Correo
+                }
+
+                eliminarTodosUsuarios
+
+                addUsuarios $direcciones
+            }
+        }
+    }
+}
+
+function eliminarTodosUsuarios {
+    $direcciones = $lst_UsuariosGrupo.Items
+
+
+    foreach ($direccion in $direcciones) {
+        Remove-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $direccion
+
+        if (!$?) {
+            generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al eliminar al usuario " + $direccion + "."
+        }
+    }
+}
+
 ####################################################
 ######## End Functions frm_InfoGrupoApps ###########
 ####################################################
@@ -1413,24 +1455,6 @@ function tratarUsuarios {
                 addUsuarios $entrada
             }
         }
-    }
-}
-
-function addCSV {
-    if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "Al seleccionar un archivo CSV se sobreescribirán los usuarios existentes. ¿Continuar?") -eq "Yes") {
-        $direcciones = @()
-
-        $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
-        $FileBrowser.filter = "Archivos CSV (*.csv)| *.csv"
-        [void]$FileBrowser.ShowDialog()
-        $usuarios = import-csv $FileBrowser.FileName -Delimiter ";"
-
-        foreach ($usuario in $usuarios) {
-            $direcciones += ,$usuario.Correo
-        }
-
-        addUsuarios $direcciones
-        
     }
 }
 
