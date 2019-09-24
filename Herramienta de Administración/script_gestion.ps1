@@ -179,7 +179,8 @@ $btn_GestionGrupos.UseVisualStyleBackColor              = $true
 $btn_GestionGrupos.Font                                 = $fnt_10Bold
 
 $btn_InfoHostPool.Add_Click( { lanzarVentana $frm_InfoHostPool } )
-$btn_GestionGrupos.Add_Click( { lanzarVentana $frm_GestionGrupos } )
+$btn_GestionGrupos.Add_Click( { $lst_GruposApps.Items.Clear()
+                                lanzarVentana $frm_GestionGrupos } )
 
 $frm_Menu.Controls.AddRange(@($lbl_MenuPcpal, $lbl_PreguntaMenu, $btn_InfoHostPool, $btn_GestionGrupos))
 
