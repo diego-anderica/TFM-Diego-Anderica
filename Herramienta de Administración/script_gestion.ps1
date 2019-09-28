@@ -1320,8 +1320,9 @@ function poblarListaUsuariosGrupo ($usuarios) {
     } elseif ($usuarios -is [system.array]) {
         
         foreach ($usuario in $usuarios) {
-            $lst_UsuariosGrupo.Items.Add($usuarios.UserPrincipalName)
+            $lst_UsuariosGrupo.Items.Add($usuario.UserPrincipalName)
         }
+
     }
 
     $lst_UsuariosGrupo.Refresh()
