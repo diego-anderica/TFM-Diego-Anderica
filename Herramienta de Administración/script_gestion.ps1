@@ -911,6 +911,7 @@ $global:grupoSeleccionado     = $null
 $global:hostPoolSeleccionado  = $null
 $global:appsActivas           = $null
 $global:appsActivasAppName    = $null
+$global:CSV                   = $false
 
 ####################################################
 ############# End Global Variables #################
@@ -1179,6 +1180,7 @@ function habilitarElementosEditarGrupo ($habilitar, $tipo) {
     $lst_UsuariosGrupo.Enabled = $habilitar
     
     if ($habilitar -eq $true) {
+        $btn_EliminarUsuario.Enabled = -Not $habilitar
         $frm_InfoGrupoApps.ClientSize = '1120, 727'
     } else {
         $frm_InfoGrupoApps.ClientSize = '971, 727'
@@ -1326,6 +1328,10 @@ function poblarListaUsuariosGrupo ($usuarios) {
     }
 
     $lst_UsuariosGrupo.Refresh()
+
+    if ($lst_UsuariosGrupo.Items.Count -lt 0 -or $lst_UsuariosGrupo.SelectedIndex -lt 0) {
+        $btn_EliminarUsuario.Enabled = $false
+    }
 }
 
 function guardarCambiosAppsGrupo {
@@ -1347,26 +1353,28 @@ function guardarCambiosAppsGrupo {
 function addUsuarios ($direcciones) {
     foreach ($direccion in $direcciones) {
         if ([bool]($direccion -as [Net.Mail.MailAddress])) {
-            Add-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $txt_CorreosUsuarios.Text
+            Add-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $direccion
 
             if (-not $?) {
-                generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al añadir al usuario " + "$direccion" + "."
+                generarPopUp "Ok" "Error" "Aviso" "Ha ocurrido un error al añadir al usuario $direccion."
             }
 
         } else {
             generarPopUp "Ok" "Error" "Aviso" "La dirección " + $direccion + " no es una dirección válida y no será tenida en cuenta."
         }
-                
+
     }
 
-    $txt_CorreosUsuarios.Text = ""
-
-    cerrarVentana $frm_AddUsuario
+    if (-Not $global:CSV) {
+        $txt_CorreosUsuarios.Text = ""
+        cerrarVentana $frm_AddUsuario
+    }
+    
     rellenarInfoGrupoApps
 }
 
 function eliminarUsuario {
-    if ($lst_UsuariosGrupo.SelectedItem -ne "") {
+    if ($lst_UsuariosGrupo.SelectedIndex -ge 0) {
         if ((generarPopUp "SiNo" "Pregunta" "Confirmar" "Se eliminará el usuario seleccionado. ¿Continuar?") -eq "Yes") {
             Remove-RdsAppGroupUser -TenantName $global:tenantName -HostPoolName $global:hostPoolSeleccionado -AppGroupName $global:grupoSeleccionado -UserPrincipalName $lst_UsuariosGrupo.SelectedItem
             
@@ -1379,10 +1387,6 @@ function eliminarUsuario {
     }
 
     rellenarInfoGrupoApps
-
-    if ($lst_UsuariosGrupo.Items.Count -le 0) {
-        $btn_EliminarUsuario.Enabled = $false
-    }
 }
 
 function comprobarSeleccionUsuarioGrupo {
@@ -1399,9 +1403,9 @@ function addCSV {
 
         $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
         $FileBrowser.filter = "Archivos CSV (*.csv)| *.csv"
-        [void]$FileBrowser.ShowDialog()
+        $result = $FileBrowser.ShowDialog()
 
-        if ($FileBrowser.FileName) {
+        if ($result -eq "OK") {
             $usuarios = import-csv $FileBrowser.FileName -Delimiter ";"
 
             if (!$usuarios) {
@@ -1414,7 +1418,11 @@ function addCSV {
 
                 eliminarTodosUsuarios
 
+                $global:CSV = $true
+
                 addUsuarios $direcciones
+
+                $global:CSV = $false
             }
         }
     }
@@ -1451,7 +1459,7 @@ function tratarUsuarios {
             $entrada = $txt_CorreosUsuarios.Text.Replace(" ", "")
 
             if ($entrada.Contains(",")) {
-                $direcciones = $entrada.Text.Split(",")
+                $direcciones = $entrada.Split(",")
                 addUsuarios $direcciones
             } else {
                 addUsuarios $entrada
